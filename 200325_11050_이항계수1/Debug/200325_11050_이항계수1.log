@@ -1,0 +1,4 @@
+﻿  200325_11050_이항계수1.cpp
+C:\Users\kangs\Desktop\Algorithm\200325_11050_이항계수1\200325_11050_이항계수1.cpp(10,6): warning C4101:  'a' :참조되지 않은 지역 변수입니다.
+C:\Users\kangs\Desktop\Algorithm\200325_11050_이항계수1\200325_11050_이항계수1.cpp(10,9): warning C4101:  'b' :참조되지 않은 지역 변수입니다.
+  200325_11050_이항계수1.vcxproj -> C:\Users\kangs\Desktop\Algorithm\200325_11050_이항계수1\Debug\200325_11050_이항계수1.exe

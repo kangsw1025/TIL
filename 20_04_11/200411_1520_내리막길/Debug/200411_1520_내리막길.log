@@ -1,0 +1,3 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (200409_1520_내리막길.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  200411_1520_내리막길.cpp
+  200409_1520_내리막길.vcxproj -> C:\Users\kangs\Desktop\Algorithm\200409_1520_내리막길\Debug\200411_1520_내리막길.exe

@@ -1,0 +1,4 @@
+﻿  200412_1654_랜선 자르기.cpp
+C:\Users\kangs\Desktop\Algorithm\200412_1654_랜선 자르기\200412_1654_랜선 자르기.cpp(9,1): error C2144:  구문 오류: int'은(는) ';' 다음에 와야 합니다.
+C:\Users\kangs\Desktop\Algorithm\200412_1654_랜선 자르기\200412_1654_랜선 자르기.cpp(25,2): error C2059:  구문 오류: '}'
+C:\Users\kangs\Desktop\Algorithm\200412_1654_랜선 자르기\200412_1654_랜선 자르기.cpp(25,2): error C2143:  구문 오류: ';'이(가) '}' 앞에 없습니다.

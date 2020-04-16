@@ -1,0 +1,5 @@
+﻿  200417_17626_Four Squares.cpp
+C:\Users\kangs\Desktop\Algorithm\200417_17626_Four Squares\200417_17626_Four Squares.cpp(14,13): warning C4244:  '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\kangs\Desktop\Algorithm\200417_17626_Four Squares\200417_17626_Four Squares.cpp(16,18): warning C4244:  '-=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\kangs\Desktop\Algorithm\200417_17626_Four Squares\200417_17626_Four Squares.cpp(17,15): warning C4244:  '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  200417_17626_Four Squares.vcxproj -> C:\Users\kangs\Desktop\Algorithm\200417_17626_Four Squares\Debug\200417_17626_Four Squares.exe

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "200521_17070_파이프 옮기기 1", "200521_17070_파이프 옮기기 1.vcxproj", "{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}.Debug|x64.ActiveCfg = Debug|x64
+		{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}.Debug|x64.Build.0 = Debug|x64
+		{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}.Debug|x86.ActiveCfg = Debug|Win32
+		{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}.Debug|x86.Build.0 = Debug|Win32
+		{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}.Release|x64.ActiveCfg = Release|x64
+		{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}.Release|x64.Build.0 = Release|x64
+		{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}.Release|x86.ActiveCfg = Release|Win32
+		{118B57C2-2C0B-4F6C-BFA8-B1890341ABB6}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9CD6678F-338A-454D-BB73-82EE44EED46C}
+	EndGlobalSection
+EndGlobal

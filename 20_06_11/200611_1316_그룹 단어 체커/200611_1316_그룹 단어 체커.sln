@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "200611_1316_그룹 단어 체커", "200611_1316_그룹 단어 체커.vcxproj", "{88DEF60B-D032-40DA-B0F3-69C10D108AE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88DEF60B-D032-40DA-B0F3-69C10D108AE3}.Debug|x64.ActiveCfg = Debug|x64
+		{88DEF60B-D032-40DA-B0F3-69C10D108AE3}.Debug|x64.Build.0 = Debug|x64
+		{88DEF60B-D032-40DA-B0F3-69C10D108AE3}.Debug|x86.ActiveCfg = Debug|Win32
+		{88DEF60B-D032-40DA-B0F3-69C10D108AE3}.Debug|x86.Build.0 = Debug|Win32
+		{88DEF60B-D032-40DA-B0F3-69C10D108AE3}.Release|x64.ActiveCfg = Release|x64
+		{88DEF60B-D032-40DA-B0F3-69C10D108AE3}.Release|x64.Build.0 = Release|x64
+		{88DEF60B-D032-40DA-B0F3-69C10D108AE3}.Release|x86.ActiveCfg = Release|Win32
+		{88DEF60B-D032-40DA-B0F3-69C10D108AE3}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83D9DFB8-6BB1-44F7-BD87-95BA33C120E7}
+	EndGlobalSection
+EndGlobal

@@ -1,2 +1,1 @@
-# study
-BOJ
+# Today I Do

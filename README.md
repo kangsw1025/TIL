@@ -202,10 +202,18 @@ select(*arr, s, d, i) {
 
 * 13日
 
-- 이진검색트리(BinarySearchTree)
+- 이진검색트리(BinarySearchTree) O(log n)(average)  O(n)(worst)
 
-트리를 사용한 검색 방법으로 특정 노드를 선택했을때 그 노드보다 왼쪽에 있는 노드들의 값은 모두 선택한 노드보다 값이 작고 오른쪽에 위치한 노드들의 값은 선택한 노드보다 값이 크다.
+트리를 사용한 검색 방법으로 특정 노드를 선택했을때 그 노드보다 왼쪽에 있는 노드들의 값은 모두 선택한 노드보다 값이 작고 오른쪽에 위치한 노드들의 값은 선택한 노드보다 값이 크다. 따라서 검색을 할때 찾고자하는 값이 해당 노드 보다 크면 오른쪽으로 작으면 왼쪽으로 이동하면서 찾으면 된다. 평균적으로 O(log n)의 시간이 걸리지만 최악의 경우 O(n)의 시간이 걸린다. 노드가 한쪽으로만 쏠려있을 경우 n번만큼 검색해야하기 때문이다.
 ![BinarySearchTree](./img/BinarySearchTree.jpg)
+```
+BinarySearchTree(node, n) {
+    if node->value == n return
+    else if(node->value > n) BinarySearchTree(node->right,n)
+    else BinarySearchTree(node->left,n)
+}
+
+```
 
 - 레드블랙트리(RedBlackTree)
 

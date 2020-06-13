@@ -223,3 +223,82 @@ BinarySearchTree(node, n) {
 3. 어떤 노드가 레드이면 그 자식 노드들은 블랙이다.
 4. 어떤 노드에서 출발하여 임의의 리프노드에 이르는 경로중 만나는 블랙노드의 수는 모두 같다.
 ![RedBlackTree](./img/RedBlackTree.jpg)
+
+- 최소신장트리(Minimum Spanning Tree)
+
+신장트리(Spanning Tree)란 그래프 내의 모든 정점을 포함하는 트리이며 최소 연걸 부분 그래프이다. 즉 간선의 수(V), 정점의 갯수(E)라 할때 V = E-1이어야 한다. 최소신장트리는 이때 최소 비용의 신장트리를 선택하는 것을 말한다.
+![spanningTree](./img/SpanningTree.jpg)
+
+- 프림 알고리즘(Prim) O(E + V log V)
+
+프림 알고리즘은 최소신장트리(MinimumSpanningTree)의 하나로 한 정점으로부터 출발하여 신장트리 집합을 단계적으로 확장 해나가는 방법이다. 절차는 다음과 같다.
+1. 처음에는 시작 정점만 트리에 들어있다.
+2. 현재 갈 수 있는 간선중 최소비용인 정점을 골라 정점을 트리에 추가한다.
+3. 이를 반복하여 간선이 n-1개가 되면 종료한다.
+
+![Prim](./img/Prim.jpg)
+```
+Prim(s, n) {// s -> 시작 정점, n -> 정점의 갯수
+    for i=1; i<=n; i++ pay[i]=INF   // 모든 정점들의 비용 무한으로 초기화
+    pay[s] = 0 // 시작정점의 비용 0으로 초기화
+    priority_queue q 최소비용을 고르기 위해 우선순위 큐 사용
+    q.push(0,s,s) // 시작 정점과 그 정점의 비용 삽입
+    while(!q.empty())
+        w // 중간 정점
+        v // 목표 정점
+        weight // 해당 간선의 가중치
+        q.pop() // 최소 비용의 간선 꺼낸 후 큐에서 삭제
+        
+        if weight < pay[v] // 해당 경로의 비용이 더 낮다면 갱신
+            pay[v] = weight
+            pre[v] = w
+            if linkededge == n return// 트리 내의 정점의 갯수가 n개 일시 종료
+            // 목표 정점이 갈 수 있는 간선들 모두 큐에 삽입
+    return; // 모든 간선을 돌아도 트리 내의 정점의 갯수가 n개가 아닐 경우
+}
+```
+
+- 크루스칼 알고리즘(Kruskal) O(E log V)
+
+크루스칼 알고리즘은 프림 알고리즘과 같이 최소신장트리의 하나로 간선들을 정렬한 후 가중치가 낮은 간선들부터 순차적으로 골라 트리를 형성한다. 이때 사이클이 형성되지 않아야 한다.
+
+![Kruskal](./img/Kruskal.jpg)
+```
+Kruskal(n) {
+    priority_queue q // 최소 비용 위해 우선순위 큐 사용, 큐에 모든 간선 삽입
+    for i=1;i<=n;i++ pay[i] = INF // 모든 정점의 비용 무한으로 초기화
+    while(!q.empty) 
+        w,v // 해당 간선의 양쪽 정점
+        q.pop()
+
+        if find(w,v) continue // 둘이 사이클을 도는 경우 이미 정점들의 최소비용이 결정 됬으므로 스킵
+        else union(w,v) // 아닐 경우 둘을 합친다.
+
+        if linkedge == n break // 모든 정점이 연결되면 종료
+    return // 간선을 돌았지만 트리 내의 정점이 n개가 안됬을 경우
+}
+```
+
+- 다익스트라 알고리즘(Dijkstra) O(|V+E| log V)
+
+다익스트라 알고리즘은 프림 알고리즘과 많이 유사하다. 다른점이 있다면 프림 알고리즘은 가중치들의 합이 최소가 되야하지만 다익스트라는 출발 정점에서 목표 정점까지의 값이 최소가 되어야 한다.
+
+![Dijkstra1](./img/Dijkstra1.jpg)
+![Dijkstra2](./img/Dijkstra2.jpg)
+```
+Dijkstra(s,n) {// 출발정점,정점의 갯수
+    for i=1;i<=n;i++ pay[i] = INF // 모든 정점 초기화
+    pay[s] = 0 // 시작 정점의 비용 0으로 초기화
+    priority_queue q // 최소비용을 위해 우선순위 큐 사용
+    q.push(s)
+
+    while(!q.empty)
+        w // 큐에 있는 정점중 비용이 제일 작은 정점
+        q.pop()
+        
+        for i=0;i<v[w].size();i++ // w에서 갈 수 있는 간선들의 수
+            if pay[w] + weight < pay[v] pay[v] = pay[w] + weight // 기존의 값보다 중간정점을 통해 오는 값이 작으면 갱신
+            w에서 갈 수 있는 모든 간선들의 비용과 정점을 q에 삽입한다.
+    return // q가 비었으므로 종료
+}
+```

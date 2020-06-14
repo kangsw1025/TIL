@@ -5,9 +5,9 @@
 
 ## 6月
 
-* 11日
+### 11日
 
--병합정렬(mergeSort) O(n log n)
+- 병합정렬(mergeSort) O(n log n)
 
 배열의 크기가 1일 될때까지 절반으로 계속 쪼개어 합칠 때 정렬을 하며, 결과적으로 원래 크기의 배열을 정렬한다.
 mergesort인자로는 해당 배열,시작점,배열의 마지막 주소가 필요하며 merge의 인자로는 배열,시작점,끝점,중간점이 필요하다
@@ -100,7 +100,7 @@ insertionsort(*arr) {
 ```
 
 ---
-* 12日
+### 12日
 
 - 퀵정렬(quickSort) O(n log n)(average) O(n^)(worst)
 
@@ -200,7 +200,7 @@ select(*arr, s, d, i) {
 6. 적합한 곳을 골라 위의 방법을 반복한다.
 ---
 
-* 13日
+### 13日
 
 - 이진검색트리(BinarySearchTree) O(log n)(average)  O(n)(worst)
 
@@ -302,3 +302,47 @@ Dijkstra(s,n) {// 출발정점,정점의 갯수
     return // q가 비었으므로 종료
 }
 ```
+---
+### 14日
+
+- 프로그래밍 언어 평가 요소
+
+1.Readability(가독성) : 작성한 코드가 읽기 쉬운가, 주관적 의견이 반영된다.  
+(ex. 영어권에서는 문법이 영어와 비슷하면 가독성이 좋다)  
+2.Writability : 원하고자 하는 코드를 잘 작성할 수 있는가, 주관적 의견이 반영된다.  
+3.Reliability(신뢰성) : 코드를 짰을때 얼마나 맞게 돌아가는지 신뢰할 수 있는가
+(ex. type safe언어)  
+4.Cost(비용) : 관점에 따라 다르다.  
+(ex. 컴파일 시간, 실행 시간, 컴파일러 사는데 드는 비용, 코드 유지보수 비용 등)
+
+- Readability(가독성)
+
+1.Simplicity : 간단해야한다.  
+2.orthogonality(직교성) : 상대적으로 적은 구조체로 복잡한 것을 만들 수 있다.  
+3.Data Type : 미리 정의된 타입이 충분하게 많이 정의되어 있어야 한다.    
+(ex. c++언어 string c언어에서는 없어 문자열을 다루기 번거롭다.)  
+4.Syntax considerations : 문법이 알아보기 좋아야 한다.
+
+- Writability
+
+1.Simplicity and orthogonality  
+2.Support for abstraction : 세부 사항은 무시할 수 있는 방식으로 복잡한 구조 또는 작업을 정의하고 사용하는 기능  
+3.Expressivity(표현력) : 표현할 수 있는 것이 많은가  
+
+- Reliability(신뢰성)
+
+1.Type checking : Type checking을 지원해주는 언어를 Type Safe언어라 하고 이는 컴파일도중 Type checking을 해주는 함수가 실행된다.  
+2.Exception handling : 예외사항 발생시 이를 해결해줄 언어인가(ex.Divide by zero)  
+3.Aliasing : 2개 이상의 레퍼런스가 동일한 메모리를 가리키는가(ex. c언어 포인터) -> 많으면 오류 발생 확률이 커진다.  
+4.Readability and writability : 이 둘이 충분한가
+등이 따라줘야 한다.
+
+- Cost
+
+1.Traomomg programmers to use the language : 해당 언어를 사용하는 사람을 교육하는데 드는 비용  
+2.Writing programs (closeness to particular applications) : 어떠한 기능의 소스를 짤때 드는 시간  
+3.Compiling programs : 컴파일 하는데 걸리는 시간  
+4.Executing programs : 실행 속도  
+5.Language implementation system : 해당 언어의 컴파일러를 얼마에 살 수 있는가  
+6.Reliability  
+7.Maintaining programs : 유지 보수 비용

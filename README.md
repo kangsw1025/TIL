@@ -313,7 +313,8 @@ Dijkstra(s,n) {// 출발정점,정점의 갯수
 3.Reliability(신뢰성) : 코드를 짰을때 얼마나 맞게 돌아가는지 신뢰할 수 있는가
 (ex. type safe언어)  
 4.Cost(비용) : 관점에 따라 다르다.  
-(ex. 컴파일 시간, 실행 시간, 컴파일러 사는데 드는 비용, 코드 유지보수 비용 등)
+(ex. 컴파일 시간, 실행 시간, 컴파일러 사는데 드는 비용, 코드 유지보수 비용 등)  
+5.Others(기타)
 
 - Readability(가독성)
 
@@ -366,3 +367,31 @@ Dijkstra(s,n) {// 출발정점,정점의 갯수
 1.Imperative(명령형 언어) : ex. C, Java, Perl, JS, C++...  
 2.Function(함수형 언어) : ex. LISP, Scheme
 3.Logic : ex. Prolog
+
+- Context-Free Grammars
+
+    문맥이 자유로운 문법, Context-Secsitive Grammars와 반대인 문법으로 앞,뒤 문장을 봐야 뜻을 알 수 있는 CSG와 달리 해당 문장만 보고도 문장의 의미를 알 수 있다. 이로 만든 언어를 Context-Free Languages라 한다.
+
+- BNF(Backus-Naur Form)
+
+    Equivalent to Context-Free Grammars  
+    CFG로 기술된 것을 BNF로 BNF로 기술된 것을 CFG로 기술할 수 있다.  
+    
+
+    - BNF 표기방법  
+    논터미널은 앵글 브레이킷안에 표기한다. (ex. <if_stmt -> if <logic_expr> then <stmt>)  
+    문법 : 한개 이상의 유한한 규칙으로 표기한다.  
+    문법의 시작 기호는 논터미널 심볼이어야 한다.
+
+    - BNF 규칙  
+    논터미널 심볼은 한개 이상의 RHS(Right Hand Side)를 가진다.
+
+    - Extended BNF(BNF 확장)  
+        Optional parts are placed in brackets [], 있어도 되고 없어도 되는 것은 []안에 표기  
+        (ex. <proc_call> -> ident [(<expr_list>)] == <proc_call> -> ident | ident (<expr_list>))
+
+        Alternative parts of RHSs ar pleced inside parenthses and separated via vertical bars, 여러 선택지는 ()안에 표기  
+        (ex. <term_> -> <term_> (+|-) const == <term_> -> <term_> + const, <term_> -> <term_> - const) 
+
+        Repetitions (More than 0) are placed inside braces {}, 0번 이상의 반복은 {}안에 표기  
+        (ex. <ident> -> letter {letter|digit} == <ident> -> letter | digit | letter digit || letter letter ...)

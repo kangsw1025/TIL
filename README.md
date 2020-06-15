@@ -346,3 +346,23 @@ Dijkstra(s,n) {// 출발정점,정점의 갯수
 5.Language implementation system : 해당 언어의 컴파일러를 얼마에 살 수 있는가  
 6.Reliability  
 7.Maintaining programs : 유지 보수 비용
+
+- Others
+
+1.Portability(호환성) : 해당 언어를 다른 언어에서도 사용할 수 있는가  
+2.Generality : 다양한 용도로 사용할 수 있는가  
+3.Well-definedness
+
+---
+### 15日
+
+- Influences on Language Design(새로운 언어가 생기는데 영향있는 것)
+
+1.Computer Architecture(H/W) : 컴퓨터 구조에 따라, 잘 알려진 예는 폰 노이만(Von Neumann architecture)  
+2.Programming Methodologies(S/W) : 소프트웨어 개발 방법론에 따라
+
+- Language Categories
+
+1.Imperative(명령형 언어) : ex. C, Java, Perl, JS, C++...  
+2.Function(함수형 언어) : ex. LISP, Scheme
+3.Logic : ex. Prolog

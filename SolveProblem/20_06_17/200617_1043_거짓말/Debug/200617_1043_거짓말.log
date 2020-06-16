@@ -1,0 +1,4 @@
+﻿  200617_1043_거짓말.cpp
+C:\Users\kangs\Desktop\Algorithm\200617_1043_거짓말\200617_1043_거짓말.cpp(20,20): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\kangs\Desktop\Algorithm\200617_1043_거짓말\200617_1043_거짓말.cpp(28,21): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+  200617_1043_거짓말.vcxproj -> C:\Users\kangs\Desktop\Algorithm\200617_1043_거짓말\Debug\200617_1043_거짓말.exe

@@ -181,3 +181,146 @@ Python collection types
     ```
     위 코드를 실행하면 첨엔 1+2 다음은 결과인 3+3 다음은 6+4가 되어 마지막 결과값인 10이 반환된다.
 ---
+
+### 7日
+
+HRV Report
+
+Heart Rate(HR) : 1분당 뛰는 심박 수
+Heartbeat(R-R interval) : 심박동사이의 간격  
+Heart Rate Variability(HRV) : 심박변이도, 건강하면 다양하고 질병에 걸리면 잔잔해져 별 차이가 없다.  
+(단기 영향 요소 :  호흡, 자율 신경계 활동 / 장기 영향 요소 : 나이, 유전, 건강, 수면 주기, 체온 등)  
+교감 신경이 초조해지면(스트레스↑, 긴장, 신체 활동) 심박수(HR)가 높아지고 심박변이도(HRV)가 낮아진다.  
+반대로 침착해지면(스트레스↓, 편안한 상태, 휴식) 심박수(HR)는 낮아지지만 심박변이도(HRV)가 높아진다.
+
+정상인의 심박 변화
+![Origin](./img/origin.jpg)
+
+질병 상태의 심박 변화
+![matter](./img/matter.jpg)
+
+건강한 사람은 위와 같이 그래프가 불규칙적이고 복잡하지만 질병에 걸린 사람의 경우 심박동의 변화가 미세하며 매우 단조롭게 나타난다.  
+즉 HRV의 감소는 심박동의 변화의 복잡성이 감소되었음을 말하며 이는 체내 적응 능력의 감소를 의미한다. 이런 변화로부터 건강한 사람은 혈중 산소농도, 체온, 혈압 등에 민감하게 반응하여 빠른 시간 내에 균형을 맞추지만 그렇지 못한 질병에 걸린 사람들은 균형을 맞추지 못한다.
+
+#### Time domain parameters
+
+- Mean HRT(평균 심박동수 (단위 : bpm))
+
+    서맥 : 50 이하  
+    정상 : 60 ~ 90  
+    빈맥 : 90 이상  
+
+- SDNN(Standard Deviation of the NN interval)
+
+    전체 NN 간격의 표준편차로 기록시간 동안에 심박동의 변화가 얼마나 되는지를 가늠할 수 있는 지표이다. 시간 범위 분석에서 가장 간단한 변수 중 하나로 분산의 제곱근이다.
+
+- RMS-SD(Root Mean Square of Successive Differences)
+
+인접한 RR간격의 차이를 제곱한 값의 평균의 제곱근으로 심장에 대한 부교감 신경 조절을 나타내는 고 주파수 영역을 평가하는데 사용한다. 즉 부교감 신경의 활동을 평가할 때 가장 흔하게 이용되는 변수다.
+
+#### Frequency domain parameters
+
+- Total power
+    VLF, LF, HF을 포함한 5분 동안의 모든 power를 의미하며 자율 신경계 조절능력을 반영한다. 대게 만성 스트레스나 질병이 있는 경우 total power가 많이 감소되는데 이는 Time domain에서 SDNN과 유사한 의미를 가진다.
+
+- VLF(Very Low Frequency)
+    초저주파 성분이며 다양한 심폐 메커니즘과 관련되어 있다. VLF의 power는 산소 교환이 결여될 때 증가하는 것으로 LF와 HF band보다 각종의 사망원인과 관련이 깊고 낮은 경우 부정맥사와 관련이 있다는 것이 보고된 적 있다. VLF의 경우 5분 측정 방식에선 임상적인 해석을 하지 않는 경우가 많다.
+
+- LF(Low Frequency)
+    상대적인 저주파 성분으로 교감신경계와 부교감신경계의 활동을 동시에 반영하나 대부분 교감 신경 활동의 지표로 활용한다. 정신적인 스트레스와 관련이 있으며 생체 내 에너지 공급에 관여하는 교감 신경의 활동의 많은 부분을 설명 할 수 있다.
+    LF band 내의 절반은 동방결절에서 영향을 받은 신호에 의한 것이라 할 수 있고, 교감 신경계는 0.1Hz이하로는 작용을 나타내지 않으나 부교감 신경계는 0.05Hz아래로 작용한다. 일반적으로 LF가 증가하는 경우 HRV는 감소한다.
+
+- HF(High Frequency)
+    상대적 고주파수 영역으로 호흡 활동과 관련 있다. 호흡주기나 RSA와 관련된 심박동의 변화와 관련이 깊어 Respiratory band라고도 하며 호흡이 느리거나 깊은 경우 보통 과다해진다.
+    부교감신경계 활동의 지표로 특히 심장의 전기적인 안정도와 밀접한 관련이 있다고 한다.
+    정상인의 경우 좀처럼 감소하지 않지만 지속적인 스트레스나 공포, 불안 등으로 고생하는 환자나 심장질환 시 낮게 나타난다. 보통 HF가 증가하면 전반적으로 HRV도 증가한다.
+
+요약
+![yoyak](./img/yoyak.jpg)
+① Time Domain Analysis  
+    Mean HRT (bpm) : 60~90  
+    - SDNN   
+    50 이상 : 건강  
+    30 이상 : 정상  
+    20 ~ 30 : 관리 필요  
+    20 이하 : 전문의 상담
+    - RMSSD  
+    40 이상 : 건강  
+    20 ~ 40 : 정상  
+    10 ~ 20 : 관리 필요  
+    10 이하 : 전문의 상담
+
+② Frequency Domain Analysis  
+    TP : 1000이상 (lnTP 7이상)  
+    LF/HF : 0.5~2(자율신경 균형상태 범위)
+
+③ HRV Tachogram  
+    변이도가 크고 복잡 다양 할수록 건강.
+
+④ Histogram  
+    분포가 넓을수록 건강함을 의미함.
+
+⑤ SNS : PNS  정상 비율 => 4:6, 5:5, 6:4
+
+⑥ Pressure Index : 하얀 bar가 녹색zone에 위치할수록 좋음  
+    Emotional State : 하얀bar가 녹색zone 가운데 위치 할수록 좋음
+
+⑦ TP, VLF, LF, HF가 I zone에 위치  
+    TP 저하 : 자율신경의 활동도 및 스트레스에 대한 대처능력 저하(lnTP 6이하)  
+    LF의 저하 : 급성스트레스, 피로, 에너지 저하, 불면증(lnLF 4.5이하)  
+    HF의 저하 : 만성스트레스, 심장의 전기적인 안정도, 기능성 대장증후군(lnHF 4.5이하)
+
+⑧ 녹색점이 정가운데 위치할수록 좋음
+
+⑨ RRV : 넓게 분포할수록 건강하다.
+
+⑩ ApEn : 높을수록 건강 (1.15이상)  
+   SRD  : 측정 결과에 대한 신뢰도(0.9이상)
+​
+
+
+#### HRV(in Python)
+
+    Python의 모듈중 하나로 심박변동(Heart Rate Variability)를 심전도 시계열에서 분석해준다.  
+    Numpy, Matplotlib, SciPy을 같이 사용한다.
+
+- R-peak Detection(R피크 검출)
+
+    팬 톰킨스 알고리즘은 필터링, 적응 임계 값 및 인간 심장 생리학 기반의 기준을 사용하며 잡음과 빠르게 변화하는 다양한 ECG형태에 직면 한 QRS 복합체를 감지한다.
+```
+R_peak_locs = panTomkins(ECG, fs, plot = 1)
+```
+![sample](./img/sample.jpg)
+
+#### HRV 기능
+- Time Domain
+
+    R-peak Detection에 따라 이소 비트를 제거하여 NN(normal-to-normal) 간격 계열을 생성하고 시계열에서 다양한 통계 측정 값을 추출하여 심박수 선형 역학에 대한 통찰력 제공
+    ```
+    timeDomainFeats = timeDomain(RR_interval_series)
+    ```
+
+    Standard deviation : 표준편차  
+Label : Description  
+ANN	: Average NN interval  
+SDNN : Standard deviation of NN intervals  
+SDSD : Standard deviation of successive NN intervals  
+NN50 : Number of successive NN intervals differing by more than 50 ms  
+pNN50 : Proportion of successive NN intervals differing by more than 50 ms  
+rMMSD : Root mean square of successive NN intervals  
+MedianNN : Median of NN intervals
+
+- Frequency Domain
+
+    스펙트럼 분석은 HRV분석의 표준으로 NN 간격 시계열의 전력 스펙트럼 밀도(PSD : Power Spectral Density)에서 추출된다. 다양한 주파수 대역 내의 PSD는 Welch의 방법을 사용하여 추정되며 가장 일반적인 주파수 대역은 VLF, LF, HF등이 있다.
+    ```
+    freqDomainFeats = frequencyDomain(RR_interval_series)
+    ```
+
+    Label : Description  
+VLF Power : Log of normalized spectral power between 0.003 Hz and 0.04 Hz  
+LF Power : Log of normalized spectral power between 0.04 Hz and 0.15 Hz  
+HF Power : Log of normalized spectral power between 0.15 Hz and 0.4 Hz  
+LF/HF Ratio : Ratio between LF and HF spectral power
+
+---

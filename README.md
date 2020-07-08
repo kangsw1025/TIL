@@ -194,9 +194,11 @@ Heart Rate Variability(HRV) : 심박변이도, 건강하면 다양하고 질병�
 반대로 침착해지면(스트레스↓, 편안한 상태, 휴식) 심박수(HR)는 낮아지지만 심박변이도(HRV)가 높아진다.
 
 정상인의 심박 변화
+
 ![Origin](./img/origin.jpg)
 
 질병 상태의 심박 변화
+
 ![matter](./img/matter.jpg)
 
 건강한 사람은 위와 같이 그래프가 불규칙적이고 복잡하지만 질병에 걸린 사람의 경우 심박동의 변화가 미세하며 매우 단조롭게 나타난다.  
@@ -322,5 +324,144 @@ VLF Power : Log of normalized spectral power between 0.003 Hz and 0.04 Hz
 LF Power : Log of normalized spectral power between 0.04 Hz and 0.15 Hz  
 HF Power : Log of normalized spectral power between 0.15 Hz and 0.4 Hz  
 LF/HF Ratio : Ratio between LF and HF spectral power
+
+---
+
+### 8日
+
+#### NeuroKit.py
+
+##### 생체 신호 처리
+
+bio_process(Automated processing of bio signals, Wrapper for other bio processing functions)
+
+neurokit.bioprocess(ecg = None, rsp = None, eda = None, emg = None, add = None, sampling_rate = 1000, age = None, sex = None, position = None, ecg_filter_type = 'FIR', ecg_filter_band = 'bandpass', ecg_filter_frequency = [3, 45], ecg_segmenter = 'hamilton', ecg_quality_model = 'default', ecg_hrv_features = [ 'time', 'frequency'], eda_alpha = 0.0008, eda_gamma = 0.01, scr_method = 'makowski', scr_treshold = 0.1, emg_names = NONE, emg_envelope_freqs = [10, 400], emg_envelope_lfreq = 4, emg_activation_treshold = 'default', emg_activation_n_above = 0.25, emg_activation_n_below = 1 )
+
+parameters
+	ecg (list or array) – ECG signal array.  
+rsp (list or array) – Respiratory(호흡기) signal array.  
+eda (list or array) – EDA signal array.  
+EMG (list , array or DataFrame) - EMG signal array. Can include multiple channels  
+add (pandas.DataFrame) – Dataframe or channels to add by concatenation(연결) to the processed dataframe
+sampling_rate (int) – Sampling rate (sample / sec).  
+age (float) – subject’s age.  
+sex (str) – subject’s gender ("m" or "f").  
+position (str) – Recording position. Compare with data like Voss et al. (2015),“supine”.  
+ecg_filter_type (str) – Can be Finite Impulse Response filter( "FIR"), Butterworth filter ("butter"), Chebyshev filters ("cheby1" or "cheby2"), Elliptic ("ellip") 또는 Bessel filter (“bessel”).  
+ecg_filter_band (str) – Band type, Low-pass filter (“lowpass”), High-pass filter (“highpass”), Band-pass filter (“bandpass”), Band-stop filter (“bandstop”)  
+ecg_filter_frequency (int or list) – Cutoff(차단) frequency, "lowpass" or "bandpass": single frequency(int), "bandpass" or "bandstop": pair of frequencies(list).  
+ecg_quality_model (str) – Path to check signal quality. "default" uses built in model  
+ecg_hrv_features (list) – To compute HRV Index. Any or all of 'time', 'frequency' or 'nonlinear'  
+ecg_segmenter (str) – The cardiac(심장) phase segmenter. Can be "hamilton", "gamboa", "engzee", "christov" or "ssf".  
+eda_alpha (float) – cvxEDA penalization(처벌) for the sparse SMNA driver.  
+eda_gamma (float) – cvxEDA penalization for the tonic spline coefficients(계수).  
+scr_method (str) – SCR extraction(추출) algorithm. "makowski"(default), "kim"(biosPPy’s default) or "gamboa"(Gamboa, 2004).  
+scr_treshold (float) – SCR minimum treshold(임계값)  
+emg_names (list) – List of EMG channel names  
+```
+import neurokit as nk
+bio_features = nk.bio_process(ecg=ecg_signal, rsp=ecg_signal, eda=eda_signal)
+```
+
+ecg_process(Automated processing ECG and RSP signals)
+
+neurokit.ecg_process(ecg, rsp=None, sampling_rate=1000, filter_type='FIR', filter_band='bandpass', filter_frequency=[3, 45], segmenter='hamilton', quality_model='default', hrv_features=['time', 'frequency'], age=None, sex=None, position=None)
+
+parameter
+	ecg (list or ndarray) – ECG signal array.  
+rsp (list or ndarray) – Respiratory(RSP) signal array.  
+sampling_rate (int) – Sampling rate (samples/second).  
+filter_type (str) – Can be Finite Impulse Response filter (“FIR”), Butterworth filter (“butter”), Chebyshev filters (“cheby1” and “cheby2”), Elliptic filter (“ellip”) or Bessel filter (“bessel”).  
+filter_band (str) – Band type, can be Low-pass filter (“lowpass”), High-pass filter (“highpass”), Band-pass filter (“bandpass”), Band-stop filter (“bandstop”).  
+filter_frequency (int or list) – Cutoff frequencies, format depends on type of band: “lowpass” or “bandpass”: single frequency (int), “bandpass” or “bandstop”: pair of frequencies (list).  
+segmenter (str) – The cardiac phase segmenter. Can be “hamilton”, “gamboa”, “engzee”, “christov” or “ssf”. See neurokit.ecg_preprocess() for details.  
+quality_model (str) – Path to model used to check signal quality. “default” uses the builtin model.  
+hrv_features (list) – What HRV indices to compute. Any or all of ‘time’, ‘frequency’ or ‘nonlinear’.  
+age (float) – Subject’s age for adjusted HRV.  
+sex (str) – Subject’s gender (“m” or “f”) for adjusted HRV.  
+position (str) – Recording position. To compare with data from Voss et al. (2015), use “supine”.  
+
+```
+import neurokit as nk
+processed_ecg = nk.ecg_process(ecg_signal, resp_signal)
+```
+
+ecg_preprocess(ECG signal preprocessing)
+
+neurokit.ecg_preprocess(ecg, sampling_rate=1000, filter_type='FIR', filter_band='bandpass', filter_frequency=[3, 45], filter_order=0.3, segmenter='hamilton')
+
+parameters
+	ecg (list or ndarray) – ECG signal array.  
+sampling_rate (int) – Sampling rate (samples/second).  
+filter_type (str or None) – Can be Finite Impulse Response filter (“FIR”), Butterworth filter (“butter”), Chebyshev filters (“cheby1” and “cheby2”), Elliptic filter (“ellip”) or Bessel filter (“bessel”).  
+filter_band (str) – Band type, can be Low-pass filter (“lowpass”), High-pass filter (“highpass”), Band-pass filter (“bandpass”), Band-stop filter (“bandstop”).  
+filter_frequency (int or list) – Cutoff frequencies, format depends on type of band: “lowpass” or “bandpass”: single frequency (int), “bandpass” or “bandstop”: pair of frequencies (list).  
+filter_order (float) – Filter order.  
+segmenter (str) – The cardiac phase segmenter. Can be “hamilton”, “gamboa”, “engzee”, “christov”, “ssf” or “pekkanen”.  
+
+```
+import neurokit as nk
+ecg_preprocessed = nk.ecg_preprocess(signal)
+```
+
+- ecg_hrv(computes the HRV)
+
+neurokit.ecg_hrv(rpeaks=None, rri=None, sampling_rate=1000, hrv_features=['time', 'frequency', 'nonlinear'])
+
+parameters
+	rpeaks (list or ndarray) – R-peak location indices.
+rri (list or ndarray) – RR intervals in the signal. If this argument is passed, rpeaks should not be passed.
+sampling_rate (int) – Sampling rate (samples/second).
+hrv_features (list) – What HRV indices to compute. Any or all of ‘time’, ‘frequency’ or ‘nonlinear’.
+
+```
+import neurokit as nk
+sampling_rate = 1000
+hrv = nk.bio_ecg.ecg_hrv(rpeaks=rpeaks, sampling_rate = sampling_rate)
+```
+
+ecg_rsa(Return RSA(Respiratory Sinus Arrhythmia) features)
+
+neurokit.ecg_rsa(rpeaks, rsp, sampling_rate=1000)
+
+parameters
+	rpeaks (list or ndarray) – List of R peaks indices.  
+rsp (list or ndarray) – Filtered RSP signal.  
+sampling_rate (int) – Sampling rate (samples/second).  
+
+```
+import neurokit as nk
+rsa = nk.ecg_rsa(rpeaks, rsp)
+```
+ecg_simulate(Simulates an ECG signal)
+
+neurokit.ecg_simulate(duration=10, sampling_rate=1000, bpm=60, noise=0.01)
+
+parameters
+	duration (int) – Desired recording length.  
+sampling_rate (int) – Desired sampling rate.  
+bpm (int) – Desired simulated heart rate.  
+noise (float) – Desired noise level.  
+
+```
+import neurokit as nk
+import pandas as pd
+
+ecg = nk.ecg_simulate(duration = 10, bpm = 60, sampling_rate = 1000, noise = 0.01)
+pd.Series(ecg).plot()
+```
+
+rsp_process(Automated processing of RSP signals)
+
+neurokit.rsp_process(rsp, sampling_rate=1000)
+
+parameters
+	rsp (list or array) – Respiratory (RSP) signal array.  
+sampling_rate (int) – Sampling rate (samples/second).  
+
+```
+import neurokit as nk
+processed_rsp = nk.rsp_process(rsp_signal)
+```
 
 ---

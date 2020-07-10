@@ -550,54 +550,55 @@ Y = f(X), Y : 출력 변수(종속변수, 반응변수) f() : 모형(머신러�
 	Agent가 action을 취하고 환경에서 보상을 받고 이 보상이 최대가 되도록 최적의 action을 취하는 방법을 배움
 	
 	Q-learning : 강화 학습의 하나로 현재 상태에서부터 먼 미래까지 가장 큰 보상을 얻을 수 있는 행도을 학습하게 하는 것이다.
+![Q-learning](./img/q_learning.jpg)
 
 
-
-	Q-learning(강화 학습의 일종) + Deep learning : DQN(Deep Reinforcement Learning)
+	Q-learning(강화 학습의 일종) + Deep learning : DQN(Deep Q Networks)
 
 	- 더 효율적이고 빠르게 학습할 수 있는 강화 학습 모델
 	- Action이 끊임없는 경우
 	- Reward가 매우 부족한 경우
 	- 다중 에이전트 강화 학습 모델
+![DQN](./img/dqn.jpg)
 
 
 선형 회귀분석(Linear Regression)
 
 	- 독립변수와 종속변수가 선형적인 관계가 있다라는 가정하게 분석
 	- 직선을 통해 종속변수를 예측하기 때문에 독립변수의 중요도와 영향력을 파악하기 쉬움
-
+![Linear Regression](./img/linear_regression.jpg)
 
 KNN(K-Nearest Neighbor)
 
 	- 새로 들어온 데이터의 주변 k개의 데이터의 class로 분류하는 기법
-
+![KNN](./img/knn.jpg)
 
 Neural Network
 
 	- 입력, 은닉, 출력층으로 구성된 모형으로서 각 층을 연결하는 노드의 가중치를 업데이트하면서 학습
 	- Overfitting이 심하게 일어나고 학습시간이 매우 오래 걸림
-
+![neural network](./img/neural_network.jpg)
 
 SVM(Support Vector Machine)
 
 	- Class 간의 거리(margin)가 최대가 되도록 decision boundary를 만드는 방법
-
+![svm](./img/svm.jpg)
 
 Ensemble Learning
 
 	- 여러 개의 모델을 결합하여 사용하는 모델
-
+![ensemble learning](./img/ensemble_learning.jpg)
 
 K-means clustering
 
 	- Label 없이 데이터의 군집으로 K개로 생성
-
+![k means clustering](./img/k_means_clustering.jpg)
 
 Deep Learning
 
 	- 다층의 layer를 통해 복잡한 데이터의 학습이 가능하도록 함
 	- 알고리즘 및 GPU의 발전이 deep learning의 부흥을 이끔
-
+![deep learning](./img/deep_learning.jpg)
 
 GAN(Generative Adversarial Network)
 

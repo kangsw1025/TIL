@@ -522,3 +522,90 @@ processed_rsp = nk.rsp_process(rsp_signal)
 	```
 
 이 외에도 평균을 구해주는 np.mean(), 특정 조건을 만족하는지 확인해주는 np.any(), np.all()등 다양한 기능을 제공해준다.
+
+---
+
+### 10日
+
+#### Machine Learning
+
+무엇(입력 X)으로 무엇(출력 Y)를 예측하는 것이 목표로 인공 지능의 한 분야로, 컴퓨터가 학습할 수 있도록 하는 알고리즘과 기술을 개발하는 분야를 말한다.  
+Y = f(X), Y : 출력 변수(종속변수, 반응변수) f() : 모형(머신러닝 알고리즘) X : 입력 변수(독립변수, feature)  
+
+지도 학습(supervised learning)
+
+	Y = f(X)에 대하여 입력 변수(X)와 출력 변수(Y)의 관계에 대하여 모델링 하는 것(Y에 대하여 예측 또는 분류하는 문제)  
+	회귀(regression) : 입력 변수 x에 대해서 연속형 출력 변수 Y를 예측
+	분류(classification) : 입력 변수 x에 대해서 이산형 출력 변수 Y(class)를 예측
+
+비지도 학습(unsupervised learning)
+
+	출력 변수(Y)가 존재하지 않고, 입력 변수(X)간의 관계에 대해 모델링 하는 것
+	군집 분석 – 유사한 데이터끼리 그룹화
+	PCA – 독립변수들의 차원을 축소화
+
+강화 학습(reinforcement learning)
+
+	수 많은 시뮬레이션을 통해 현재의 선택이 먼 미래에 보상이 최대가 되도록 학습
+	Agent가 action을 취하고 환경에서 보상을 받고 이 보상이 최대가 되도록 최적의 action을 취하는 방법을 배움
+	
+	Q-learning : 강화 학습의 하나로 현재 상태에서부터 먼 미래까지 가장 큰 보상을 얻을 수 있는 행도을 학습하게 하는 것이다.
+
+
+
+	Q-learning(강화 학습의 일종) + Deep learning : DQN(Deep Reinforcement Learning)
+
+	- 더 효율적이고 빠르게 학습할 수 있는 강화 학습 모델
+	- Action이 끊임없는 경우
+	- Reward가 매우 부족한 경우
+	- 다중 에이전트 강화 학습 모델
+
+
+선형 회귀분석(Linear Regression)
+
+	- 독립변수와 종속변수가 선형적인 관계가 있다라는 가정하게 분석
+	- 직선을 통해 종속변수를 예측하기 때문에 독립변수의 중요도와 영향력을 파악하기 쉬움
+
+
+KNN(K-Nearest Neighbor)
+
+	- 새로 들어온 데이터의 주변 k개의 데이터의 class로 분류하는 기법
+
+
+Neural Network
+
+	- 입력, 은닉, 출력층으로 구성된 모형으로서 각 층을 연결하는 노드의 가중치를 업데이트하면서 학습
+	- Overfitting이 심하게 일어나고 학습시간이 매우 오래 걸림
+
+
+SVM(Support Vector Machine)
+
+	- Class 간의 거리(margin)가 최대가 되도록 decision boundary를 만드는 방법
+
+
+Ensemble Learning
+
+	- 여러 개의 모델을 결합하여 사용하는 모델
+
+
+K-means clustering
+
+	- Label 없이 데이터의 군집으로 K개로 생성
+
+
+Deep Learning
+
+	- 다층의 layer를 통해 복잡한 데이터의 학습이 가능하도록 함
+	- 알고리즘 및 GPU의 발전이 deep learning의 부흥을 이끔
+
+
+GAN(Generative Adversarial Network)
+
+	- Data를 만들어내는 Generator와 만들어진 data를 평가하는 Discriminator가 서로 대립적으로 학습해가며 성능을 점차 개선해 나가지는 개념
+	Discriminator를 학습시킬 때에는 D(x)가 1이 되고 D(G(z))가 0이 되도록 학습시키고 Generator를 학습시킬 때에는 D(G(z))가 1이 되도록 학습시킨다. (Discriminator는 진짜 데이터를 진짜로 판별하고 가짜데이터를 가짜로 판별할 수 있게 만들고 Generator는 Discriminator를 헷갈리게 만들도록 학습한다.)
+
+데이터 분석 과정
+
+	Raw Data -> Processed Data -> Experimental Design(실험 설계) -> Model
+	- 전처리 : Raw 데이터를 모델링 할 수 있도록 데이터를 병합 및 파생 변수 생성하는 과정
+	- 실험 설계 : Test 데이터는 실제로 모델을 적용한다는 가정하여야 한다. (Train, validation 데이터에 test 정보는 없어야 한다.)

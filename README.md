@@ -602,11 +602,13 @@ Deep Learning
 
 GAN(Generative Adversarial Network)
 
-	- Data를 만들어내는 Generator와 만들어진 data를 평가하는 Discriminator가 서로 대립적으로 학습해가며 성능을 점차 개선해 나가지는 개념
-	Discriminator를 학습시킬 때에는 D(x)가 1이 되고 D(G(z))가 0이 되도록 학습시키고 Generator를 학습시킬 때에는 D(G(z))가 1이 되도록 학습시킨다. (Discriminator는 진짜 데이터를 진짜로 판별하고 가짜데이터를 가짜로 판별할 수 있게 만들고 Generator는 Discriminator를 헷갈리게 만들도록 학습한다.)
+	Data를 만들어내는 Generator와 만들어진 data를 평가하는 Discriminator가 서로 대립적으로 학습해가며 성능을 점차 개선해
+    나가지는 개념 Discriminator를 학습시킬 때에는 D(x)가 1이 되고 D(G(z))가 0이 되도록 학습시키고 Generator를 학습시킬 때에는 D(G(z))가 1이 되도록 학습시킨다.
+    (Discriminator는 진짜 데이터를 진짜로 판별하고 가짜데이터를 가짜로 판별할 수 있게 만들고 Generator는 Discriminator를 헷갈리게 만들도록 학습한다.)
 
 데이터 분석 과정
 
 	Raw Data -> Processed Data -> Experimental Design(실험 설계) -> Model
 	- 전처리 : Raw 데이터를 모델링 할 수 있도록 데이터를 병합 및 파생 변수 생성하는 과정
-	- 실험 설계 : Test 데이터는 실제로 모델을 적용한다는 가정하여야 한다. (Train, validation 데이터에 test 정보는 없어야 한다.)
+	- 실험 설계 : Test 데이터는 실제로 모델을 적용한다는 가정하여야 한다.  
+    (Train, validation 데이터에 test 정보는 없어야 한다.)

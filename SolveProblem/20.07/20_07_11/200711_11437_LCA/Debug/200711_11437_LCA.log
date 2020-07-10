@@ -1,0 +1,4 @@
+﻿  200711_11437_LCA.cpp
+C:\Users\kangs\Desktop\Algorithm\200711_11437_LCA\200711_11437_LCA.cpp(18,20): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\kangs\Desktop\Algorithm\200711_11437_LCA\200711_11437_LCA.cpp(70,20): warning C4018:  '<': signed 또는 unsigned가 일치하지 않습니다.
+  200711_11437_LCA.vcxproj -> C:\Users\kangs\Desktop\Algorithm\200711_11437_LCA\Debug\200711_11437_LCA.exe

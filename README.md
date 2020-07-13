@@ -613,3 +613,113 @@ GAN(Generative Adversarial Network)
 	- 전처리 : Raw 데이터를 모델링 할 수 있도록 데이터를 병합 및 파생 변수 생성하는 과정
 	- 실험 설계 : Test 데이터는 실제로 모델을 적용한다는 가정하여야 한다.  
     (Train, validation 데이터에 test 정보는 없어야 한다.)
+
+---
+
+### 13日
+
+#### numpy.linalg()
+
+선형대수 연산을 할 때 사용한다.
+
+np.linalg.inv : 역행렬을 구할 때 사용하는 함수
+
+	```
+	x = np.random.rand(3,3)
+	x @ np.linalg.inv(x) # 행렬의 곱은 @을 사용한다
+	```
+	위의 코드를 실행하면 3x3크기의 항등 행렬이 결과값으로 나온다.
+
+np.linalg.solve : 행렬 문제를 풀어주는 함수
+
+	```
+	x + y = 25
+	2x + 4y = 64라 가정
+	x = np.array([[1,1],[2,4]])
+	y = np.array([25,64])
+	z = np.linalg.solve(x,y)
+	z = [18, 7]
+	np.allclose(x@z,y)를하면 x와z의 연산 결과가 y와 일치하는지 확인할 수 있다.
+	```
+
+np.linspace(start, end, num=개수, endpoint = True, retstep = False, dtype = 자료형)
+
+	np.array와 비슷하다 생각하면 된다. default 값으로 endpoint가 true로 되어있는데 이를 false로 명시할 시 endpoint의 값이 배열에 포함되지 않는다.
+![example1](./img/13_1.jpg)
+retstep을 true로 명시할 경우 배열 값들의 간격을 배열에 포함하고 따로 명시 않하면 false로 평범한 배열이 반환된다.
+![example2](./img/13_2.jpg)
+
+#### matplotlib
+
+import numpy as np
+import matplotlib.pyplot as plt # 그래프 그릴 때 사용
+%matplotlib inline # 그래프가 jupyter notebook 안에 그려지게 할 때 명시
+
+plt.plot
+
+	인자로 받은 x와 y의 데이터를 기반으로 그래프를 그려주는 함수로 선으로 표현된다.
+
+선 그래프가 아닌 점 그래프를 그리고 싶으면 plot함수 대신 scatter함수를 사용하면 된다. 그래프에 대해 설명을 추가하고 싶으면 plt.title()을 통해 그래프 이름을 추가할 수도 있고, plt.xlabel, plt.ylabel을 통해 x축, 	y축에 대한 설명을 작성할 수도 있으며 plt.grid(True)를 사용하면 그래프 뒤에 격자가 추가도 가능하고 plt.xlim, plt.ylim을 통해 그래프가 표시하는 범위도 설정 가능하다.
+
+plot(x, y, color = ‘c’)을 통해 원하는 색깔로 바꿀 수도 있으며 plot(x, y, color = #FFFFFF)을 통해서도 바꿀 수 있다.
+
+#### pandas
+
+import pandas as pd
+
+Series
+
+	pandas의 기본 객체 중 하나로 numpy에서 벡터처럼 1차원 배열이다. 기본적으로 0부터 생성되지만 명시를 통해 다르게 할 수도 있다.
+	```
+	a = pd.Series([1,2,3])
+	print(a)
+	index   value
+	0	1
+	1	2	
+	2	3
+	dtype : int64
+
+	b = pd.Series([‘a’,‘b’,‘c’])
+	print(a)
+	index   value
+	0	a
+	1	b	
+	2	c
+	dtype : object
+
+	c = pd.Series(np.arange(200))
+	print(c)
+	index   value
+	0	0
+	1	1
+	.
+	.
+	199	199
+	Length:200, dtype : int64
+
+	d = pd.Series([1,2,3],[100,200,300])
+	print(d)
+	index   value
+	100	1
+	200	2
+	300	3
+	```
+	위와 같이 value에 숫자, 문자 등 둘 다 사용 가능하며 두 번째 인자에 값을 전해주면 해당 값이 index를 나타내는데 value처럼 숫자, 문자 둘 다 가능하다.
+
+	len함수나 size를 통해 길이를 알 수 있으며 shape(tuple type)을 통해서도 알 수 있다.  
+unique()함수를 통해 중복값을 제외할 수도 있고 count로 개수를 셀 수 있다.  
+이때 NaN값이 있는 경우 len이나 size 등의 함수는 개수를 포함하지만 count는 NaN을 제외한 개수를 반환한다.  
+제일 중요한 value_counts() 함수는 해당 배열에 나오는 값들의 빈도를 나타내준다.  
+	```
+	s = pd.Series([1,2,3,4,5,6,7,8,9])
+	print(s[[1,4,6]])
+	[2,5,7]
+	```  
+	위와 같이 여러 개의 인덱스를 선택할 수도 있는데 이때 s[]안에 인덱스를 쓰는 것이 아니라 s[]안에 또 배열인 s[[[]]안에 인덱스를 써야한다.
+	numpy배열처럼 연산도 가능한데 이때 일치하는 인덱스가 없는 경우 해당 인덱스에 대한 결과 값은 NaN이 된다.
+
+#### DataFrame
+
+	Series가 1차원이라면 DataFrame은 2차원으로 확대된 것으로 엑셀을 생각하면 이해하기 쉽다. 사용방법은 Series와 거의 비슷하며 차이점이라면 2차원이기 때문에 row와 column으로 구성되어 있다. info함수를 통해 각 column의 타입, 개수를 알수 있고 describe함수를 통해 분산, 평균 등 데이터들의 통계치를 알 수 있다.
+
+

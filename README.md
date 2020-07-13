@@ -658,8 +658,11 @@ import matplotlib.pyplot as plt # 그래프 그릴 때 사용
 plt.plot
 
 	인자로 받은 x와 y의 데이터를 기반으로 그래프를 그려주는 함수로 선으로 표현된다.
+![example3](./img/13_3.jpg)  
 
 선 그래프가 아닌 점 그래프를 그리고 싶으면 plot함수 대신 scatter함수를 사용하면 된다. 그래프에 대해 설명을 추가하고 싶으면 plt.title()을 통해 그래프 이름을 추가할 수도 있고, plt.xlabel, plt.ylabel을 통해 x축, 	y축에 대한 설명을 작성할 수도 있으며 plt.grid(True)를 사용하면 그래프 뒤에 격자가 추가도 가능하고 plt.xlim, plt.ylim을 통해 그래프가 표시하는 범위도 설정 가능하다.
+![example4](./img/13_4.jpg)
+
 
 plot(x, y, color = ‘c’)을 통해 원하는 색깔로 바꿀 수도 있으며 plot(x, y, color = #FFFFFF)을 통해서도 바꿀 수 있다.
 
@@ -721,5 +724,5 @@ unique()함수를 통해 중복값을 제외할 수도 있고 count로 개수를
 #### DataFrame
 
 	Series가 1차원이라면 DataFrame은 2차원으로 확대된 것으로 엑셀을 생각하면 이해하기 쉽다. 사용방법은 Series와 거의 비슷하며 차이점이라면 2차원이기 때문에 row와 column으로 구성되어 있다. info함수를 통해 각 column의 타입, 개수를 알수 있고 describe함수를 통해 분산, 평균 등 데이터들의 통계치를 알 수 있다.
-
-
+![example5](./img/13_5.jpg)
+---

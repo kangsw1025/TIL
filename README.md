@@ -644,7 +644,8 @@ np.linalg.solve : 행렬 문제를 풀어주는 함수
 
 np.linspace(start, end, num=개수, endpoint = True, retstep = False, dtype = 자료형)
 
-	np.array와 비슷하다 생각하면 된다. default 값으로 endpoint가 true로 되어있는데 이를 false로 명시할 시 endpoint의 값이 배열에 포함되지 않는다.
+	np.array와 비슷하다 생각하면 된다. default 값으로 endpoint가 true로 되어있는데 이를 false로 명시할 시  
+    endpoint의 값이 배열에 포함되지 않는다.
 ![example1](./img/13_1.jpg)
 retstep을 true로 명시할 경우 배열 값들의 간격을 배열에 포함하고 따로 명시 않하면 false로 평범한 배열이 반환된다.
 ![example2](./img/13_2.jpg)
@@ -672,7 +673,8 @@ import pandas as pd
 
 Series
 
-	pandas의 기본 객체 중 하나로 numpy에서 벡터처럼 1차원 배열이다. 기본적으로 0부터 생성되지만 명시를 통해 다르게 할 수도 있다.
+	pandas의 기본 객체 중 하나로 numpy에서 벡터처럼 1차원 배열이다.  
+    기본적으로 0부터 생성되지만 명시를 통해 다르게 할 수도 있다.
 	```
 	a = pd.Series([1,2,3])
 	print(a)
@@ -707,7 +709,8 @@ Series
 	200	2
 	300	3
 	```
-	위와 같이 value에 숫자, 문자 등 둘 다 사용 가능하며 두 번째 인자에 값을 전해주면 해당 값이 index를 나타내는데 value처럼 숫자, 문자 둘 다 가능하다.
+	위와 같이 value에 숫자, 문자 등 둘 다 사용 가능하며 두 번째 인자에 값을 전해주면 해당 값이 index를 나타내는데  
+    value처럼 숫자, 문자 둘 다 가능하다.
 
 	len함수나 size를 통해 길이를 알 수 있으며 shape(tuple type)을 통해서도 알 수 있다.  
 unique()함수를 통해 중복값을 제외할 수도 있고 count로 개수를 셀 수 있다.  
@@ -723,6 +726,8 @@ unique()함수를 통해 중복값을 제외할 수도 있고 count로 개수를
 
 #### DataFrame
 
-	Series가 1차원이라면 DataFrame은 2차원으로 확대된 것으로 엑셀을 생각하면 이해하기 쉽다. 사용방법은 Series와 거의 비슷하며 차이점이라면 2차원이기 때문에 row와 column으로 구성되어 있다. info함수를 통해 각 column의 타입, 개수를 알수 있고 describe함수를 통해 분산, 평균 등 데이터들의 통계치를 알 수 있다.
+	Series가 1차원이라면 DataFrame은 2차원으로 확대된 것으로 엑셀을 생각하면 이해하기 쉽다.  
+    사용방법은 Series와 거의 비슷하며 차이점이라면 2차원이기 때문에 row와 column으로 구성되어 있다.  
+    info함수를 통해 각 column의 타입, 개수를 알수 있고 describe함수를 통해 분산, 평균 등 데이터들의 통계치를 알 수 있다.
 ![example5](./img/13_5.jpg)
 ---

@@ -731,3 +731,23 @@ unique()함수를 통해 중복값을 제외할 수도 있고 count로 개수를
     info함수를 통해 각 column의 타입, 개수를 알수 있고 describe함수를 통해 분산, 평균 등 데이터들의 통계치를 알 수 있다.
 ![example5](./img/13_5.jpg)
 ---
+
+### 19日
+
+- corr(correlation 상관계수)
+
+    dataframe을 인자로 받아 column들 간의 상간 관계를 -1,1 사이의 값으로 나타내준다.  
+    1에 가까울수록 비례하다는 것이고 -1에 가까울수록 반비례하고 0에 가까울수록 연관이 없는 것이다.
+    이를 plt.matshow()함수를 통해 그림으로 나타내 더욱 보기 좋게 나타낼 수 있다.
+
+- NaN
+    
+    not a number의 줄임말로 말 그대로 숫자가 아닌 값을 나타낸다.  
+    dataframe에서 값이 0이면 해당 column값이 0인건데 nan이면 해당 column의 값이 존재하지 않다는 것이다. 이를 확인하는 방법은 info함수를 통해 row의 갯수와 해당 column의 갯수가 다르면 nan가 존재하는 것이다.  
+    또한 특정 column에 대해 확인하려면 isna를 통해 column에 대한 각 행의 nan을 확인할 수 있다.  
+
+    dropna()함수를 사용하면 각 행의 값들 중 nan이 하나라도 존재하면 해당 행을 삭제한 값을 반환해준다. 특정 column의 값이 nan인 것만 삭제하려면 dropna(subset=['col1', 'col2']) 을 명시해주면 된다.  
+    행이 아닌 열을 삭제하려면 dropna(axis = 1)을 명시해주면 된다.  
+
+    NaN값을 변경하려면 dataframe['column'].fillna(value)를 주면 value의 값으로 nan을 모두 변경시켜준다.  
+    

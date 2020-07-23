@@ -751,3 +751,59 @@ unique()함수를 통해 중복값을 제외할 수도 있고 count로 개수를
 
     NaN값을 변경하려면 dataframe['column'].fillna(value)를 주면 value의 값으로 nan을 모두 변경시켜준다.  
     
+---
+
+### 23日
+
+#### HTML(HyperText Markup Language)
+
+Tag
+
+	단어 그대로 특징을 표기할 때 사용하는 것으로 <>안에 사용할 Tag 이름을 적어 사용한다.  
+	대부분은 <tag> </tag>처럼 시작과 끝 태그가 있고 사이에 text를 적어 해당 text에 <tag>에 해당하는 기능이 적용된다.  
+	<strong></strong> 진하게  
+	<u></u> 밑줄  
+	<h1~6></h1~6> 제목으로 숫자가 커질수록 글씨 크기는 작아진다.  
+	<p></p> 문단을 나타내는 것으로 해당 text와 다음 text 사이에 공백이 생겨 문단을 형성해 준다.  
+	<p style = “margin-top : npx” or “margin-bottom : npx”>를 사용하여 공백 간격을 조절할 수 있다.  
+	(top = 문단 상단, bottom = 문단 하단, n = 원하는 간격)  
+	<br> 다른 태그들과 예외적으로 시작, 끝으로 이루어지지 않고 하나로만 <br>만 사용하면 개행된다.  
+	<img> <br>과 같이 혼자 쓰이는 태그로 이미지를 나타낼 때 사용한다.  
+	<img src=“image path” width=“n” height=“n”>을 통해 이미지를 불러올 수 있고 크기를 설정할 수도 있다.  
+	<li> 목차를 나타낼 때 사용하는 것으로 다른 태그들처럼 <li></li>를 통해 사용한다.  
+	점 대신 숫자를 나타내고 싶으면 아래와 같이 <ol></ol>을 같이 사용해주면 된다. 
+	
+	<ol> // ordered list
+		<li> text</li>
+	</ol>
+
+	<title> html의 제목을 나타내는 것으로 <title></title>사이에 text를 제목으로 만들어준다.  
+	<head></head> 해당 html 파일의 속성들을 나타내는 문맥들을 포함하는 부분  
+	<body></body> 해당 html 파일의 내용들을 나타내는 문맥들을 포함하는 부분  
+	<a href=“address”></a> 링크를 걸 때 사용하는 tag로 address 위치에 링크를 명시해주면 링크가 걸리게 된다.  
+	새 탭으로 열리게 하려면 <a href=“” target=“_blank”>를 명시해주면 새 탭에서 열리고  
+	title=“text”를 명시해주면 해당 링크에 마우스를 올려두면 title에 들어가는 text가 보인다. <a href=“” target=“” title=“text>  
+
+Select
+
+	속성을 나타낼 때 암묵적으로 된 약속이 있는데 1번만 사용할 경우 id=”“로 사용하며 #id_name을 통해 선택 가능하다.  
+	2번 이상 사용할 경우 class=“”로 사용하며 .class_name으로 선택할 수 있다.  
+	하위의 항목에 접근할 때는 상위이름 하위이름 처럼 접근이 가능하다 ex) ol li
+	
+	<ol>
+		<li>test</li>
+	</ol>
+	
+	직계 하위를 선택할 때는 ol>li로 선택할 수 있다.
+
+style
+
+	태그들을 선택하여 해당 태그들을 꾸밀 때 사용한다. 보통 속성을 나타내는 헤드부분에 명시한다.  
+	
+	<style>
+		ol {
+			color : red;
+		}	
+	</style>
+	
+	위와 같이 하면 ol 내부에 있는 모든 것들은 빨간색으로 변경된다.

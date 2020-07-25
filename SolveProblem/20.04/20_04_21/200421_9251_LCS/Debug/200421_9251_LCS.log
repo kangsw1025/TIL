@@ -1,4 +1,0 @@
-﻿  200420_9251_LCS.cpp
-C:\Users\kangs\Desktop\Algorithm\200420_9251_LCS\200420_9251_LCS.cpp(17,20): warning C4018:  '<=': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\kangs\Desktop\Algorithm\200420_9251_LCS\200420_9251_LCS.cpp(18,21): warning C4018:  '<=': signed 또는 unsigned가 일치하지 않습니다.
-  200420_9251_LCS.vcxproj -> C:\Users\kangs\Desktop\Algorithm\200420_9251_LCS\Debug\200420_9251_LCS.exe

@@ -1,1 +1,1 @@
-# Repository which BOJ problems I solved
+# BOJ problems repository I solved

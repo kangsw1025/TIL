@@ -1,2 +1,3 @@
 # Algorithm problems repository I solved
-[https://www.acmicpc.net/user/kangsw1025](https://www.acmicpc.net/user/kangsw1025)
+
+Site : [BOJ](https://www.acmicpc.net/), [Codeforces](https://codeforces.com/)

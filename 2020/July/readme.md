@@ -1,4 +1,4 @@
-# Self_Study
+# Today I Learned
 ## 목표
 * 공부한 내용 기록
 * 2문제 이상 알고리즘 문제 풀기

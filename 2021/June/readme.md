@@ -17,8 +17,8 @@
         2. WAS는 이 변환한 Servlet을 동작하여 필요한 기능을 수행
         3. 수행 완료 후 생성된 데이터를 웹 페이지와 함께 클라이언트로 응답
     - 생명주기
-        - Servlet 생명주기와 유사하다.
-    ![JSP_life_cycle](../../img/jsp_life_cycle.jpg)
+        - Servlet 생명주기와 유사하다.   
+        ![JSP_life_cycle](../../img/jsp_life_cycle.jpg)
     - 문법
         1. JSP Expression   
             **<%= expression %>**  

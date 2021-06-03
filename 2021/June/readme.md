@@ -60,7 +60,7 @@
                - Bean의 속성을 설정한다   
                5. **< jsp:getProperty >** action   
                - 주어진 속성값을 가져오는데 사용되며 이를 문자열로 변호나하고 동적인 웹 페이지를 생성하는데 해당 내용을 사용할 수 있다
-    - 호출 방법 (숫자가 커질수록 복잡한 App 또는 큰 규모의 개발팀이 사용)
+    - 호출 방법 (아래로 갈수록 복잡한 App 또는 큰 규모의 개발팀이 사용)
         1. Call Java code Directly
             - 모든 Java 코드를 JSP 페이지에 넣는 방식으로 아주 적은 양의 코드에만 적합한 전략
         2. Call Java code indirectly

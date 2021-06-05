@@ -77,3 +77,20 @@
         6. Use custom tags
             - tag handler class를 만들고 XML과 같은 사용자 정의 태그를 사용하여 태그 핸들러를 호출한다
         
+
+### 5日
+
+- 리다이렉트(Redirect)
+
+    - HTTP프로토콜로 정해진 규칙으로 서버는 클라이언트의 요청에 대해 특정 URL로 이동을 요청할 수 있는데 이를 리다이렉트라고 한다
+    - 서버는 클라이언트에게 HTTP 상태코드 302로 응답할 때 헤더 내 Location 값에 이동할 URL을 추가하고 응답을 받은 클라이언트는 헤더(Location)에 포함된 URL로 재요청을 보내게 되고 이때 브라우저의 주소창은 새 URL로 바뀌게 된다
+    - 클라이언트는 서버로부터 받은 상태 값이 302이면 Location 헤더값으로 재요청을 보내게 되고 이때 브라우저의 주소창은 전송받은 URL로 바뀌게 된다
+    - 서블릿이나 JSP는 리다이렉트 하기 위해 HttpServletResponse 클래스의 sendRedirect() 메소드를 사용한다
+    ![Redirect_example](../../img/redirect_example.jpg)
+
+- 포워드(Forward)
+
+    - 웹 컨테이너 차원에서 페이지 이동만 있는 것으로 웹 브라우저는 다른 페이지로 이동을 했는지 알 수 없어 최초에 호출한 URL이 표시된다
+    - 클라이언트와 통신 없이 서버에서만 처리되는 것이기 때문에 리다이렉트보다 나은 성능을 보여준다
+    - 현재 실행중인 페이지와 포워딩에 의해 호출되는 Request와 Response 객체를 공유하고 객체를 Request에 담아 다음 자원에 전송한다
+    ![Forward_example](../../img/forward_example.jpg)

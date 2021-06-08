@@ -10,7 +10,7 @@
 - JSP(Java Server Page)
 
     - Java 언어를 기반으로 하는 Server Side 스크립트 언어
-    - HTML 코드에 Java 코드를 넣어 동적인 웹 페이지를 생성하는 웹 어플리케이션 도구
+    - HTML 코드에 Java 코드를 넣어 동적인 웹 페이지를 생성하는 웹 어플리케이션들은 일반적으로 하나의 루트 DOM 노드가 있고 React를 기존 앱에 통합하려는 경우 원하는 만큼 많은 수의 독립된 루트 DOM 노드가 있을 수 있다 도구
     - Servlet를 보완한 스크립트 방식으로 Servlet의 모든 기능을 사용 가능
     - 동작 과정
         1. JSP가 실행되면 WAS는 내부적으로 JSP 파일을 Java Servlet으로 변환
@@ -133,6 +133,170 @@
 
     - 웹 어플리케이션이 시작되고 종료될 때까지 변수를 사용할 수 있다
     - ServletContext 인터페이스를 구현한 객체를 사용하며 JSP 에서는 applcation 내장 객체를 서블릿에서는 getServletContext() 메소드를 이용하여 application 객체를 이용한다
-    - 웹 어플리케이션 하나당 하나의 application객체가 사용된다
+    - 웹 어플리케이션들은 일반적으로 하나의 루트 DOM 노드가 있고 React를 기존 앱에 통합하려는 경우 원하는 만큼 많은 수의 독립된 루트 DOM 노드가 있을 수 있다 하나당 하나의 application객체가 사용된다
     - 값을 저장할 때는 application객체의 setAttribute()메소드를 값을 읽어 들일 때는 application객체의 getAttribute()메소드를 사용한다
     - 모든 클라이언트가 공통으로 사용해야 할 값들이 있을 때 사용한다
+
+
+### 8日
+
+- JSX
+
+    - 리액트에서 생김새를 정의할 때 사용하는 문법으로 XML 형태로 코드를 작성하면 babel이 JavaScript로 변환을 해준다
+    - Babel은 JS의 문법을 확장해주는 도구로 아직 지원되지 않는 최신 문법, 편의상 사용하거나 실험적인 JS 문법들을 정식 JS 형태로 변환해줌으로서 제대로 실행할 수 있게 해주는 역할을 한다
+        ```
+            const element = <h1>Hello, world!</h1>;
+            return <div>안녕하세요</div>;
+        ```
+    - 컴파일이 끝나면 JSX 표현식이 정규 JS 함수 호출이 되고 JS 객체로 인식된다, 즉 JSX를 `if` 구문 및 `for` loop 안에 사용하고, 변수에 할당하고, 인자로서 받아들이고, 함수로부터 반환할 수 있다
+    - 주석은 `{/* 주석 내용 */}`과 같이 작성하거나 다음과 같이 열리는 태그 내부에서 작성한다
+        ```
+            `{/* 주석 내용 */}`
+            <div
+                // 주석 내용
+            />
+        ```
+    
+- JSX Style, CSS class    
+    - JSX에서 태그에 `style`과 CSS class를 설정하는 방법은 HTML에서 설정하는 방법과 다르다
+    - 인라인 스타일은 객체 형태로 작성을 해야하며 `background-color`처럼 `-` 로 구분되어 있는 이름들은 `backgroundColor` 처럼 camelCase 형태로 네이밍 해주어야 한다
+    - CSS class를 설정할 때에는 `class=`가 아닌 `className=`으로 설정을 해주어야 한다
+        ```
+            import React from 'react';
+
+            function App() {
+                const name = 'react';
+                const style = {
+                    backgroundColor: 'black',
+                    color: 'aqua',
+                    fontSize: 24, // 기본 단위 px
+                    padding: '1rem' // 다른 단위 사용 시 문자열로 설정
+                }
+
+                return (
+                    <>
+                        <div style={style}>{name}</div>
+                        <div className="gray-box"></div>
+                    </>
+                );
+            }
+
+            export default App;
+        ```
+    
+- 엘리먼트 렌더링
+
+    - 엘리먼트는 React 앱의 가장 작은 단위로 화면에 표시할 내용을 기술한다
+        ```
+            const element = <h1>hello, world</h1>;
+        ```
+    - 브라우저 DOM 엘리먼트와 달리 React 엘리먼트는 일반 객체(plain object)이며 쉽게 생성할 수 있으며 React DOM은 React 엘리먼트와 일치하도록 DOM을 업데이트 한다
+    
+- DOM에 엘리먼트 렌더링 하기
+
+    - HTML 파일 어딘가에 `<div>`가 있다고 가정해보자
+        ```
+            <div id="root"></div>
+        ```
+    - 이 안에 들어가는 모든 엘리먼트를 React DOM에서 관리하기 때문에 이것을 `루트(root)` DOM 노드라고 부른다
+    - React로 구현된 어플리케이션들은 일반적으로 하나의 루트 DOM 노드가 있고 React를 기존 앱에 통합하려는 경우 원하는 만큼 많은 수의 독립된 루트 DOM 노드가 있을 수 있다 
+    - React 엘리먼트를 루트 DOM 노드에 렌더링하려면 둘 다 ReactDOM.render()로 전달하면 된다
+        ```
+            const element = <h1>Hello, world</h1>;
+            ReactDOM.render(
+                element,
+                document.getElementByID('root')
+            );
+        ```
+
+- 렌더링 된 엘리먼트 업데이트하기
+
+    - React 엘리먼트는 `불변객체`로 엘리먼트를 생성한 이후에는 해당 엘리먼트의 자식이나 속성을 변경할 수 없다
+    - 엘리먼트는 영화에서 하나의 프레임과 같이 특정 시점의 UI를 보여준다
+    - UI를 업데이트 하는 방법은 새로운 엘리먼트를 생성하고 이를 `ReactDOM.render()`로 전달하는 것이다
+    - React DOM은 업데이트 된 엘리먼트와 이전의 엘리먼트와 비교하고 DOM을 원하는 상태로 만드는데 필요한 경우에만 DOM을 업데이트한다
+    ![ReactDOM_update](../../img/dom_update.jpg)
+    - React DOM은 내용이 변경된 텍스트 노드만 업데이트된다
+
+- 컴포넌트(Component)
+
+    - 개념적으로 컴포넌트는 JavaScript 함수와 유사하다
+    - `props`라고 하는 임의의 입력을 받은 후 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환한다
+    - 컴포넌트를 정의하는 가장 간단한 방법은 JavaScript 함수를 작성하는 것이다
+        ```
+            function component(props) {
+                return <div>hello, {props.name}</div>
+            }
+        ```
+    - 이 함수는 데이터를 가진 하나의 `props` 객체 인자를 받은 후 React 엘리먼트를 반환하므로 유효한 React 컴포넌트이며 이러한 컴포넌트는 JavaScript 함수이기 때문에 `함수 컴포넌트`라고 호칭한다
+    - 또한 `ES6 class`를 사용하여 컴포넌트를 정의할 수 있는데 이는 클래스 `클래스 컴포넌트`라고 호칭한다
+        ```
+            class Name extends React.Component {
+                render() {
+                    return <div>hello, {this.props.name}</div>
+                }
+            }
+        ```
+
+- 컴포넌트 렌더링
+
+    - React 엘리먼트는 사용자 정의 컴포넌트로도 나타낼 수 있다
+        ```
+            const element = <Welcome name="SW" />;
+        ```
+    - React가 사용자 정의 컴포넌트로 작성한 엘리먼트를 발견하면 JSX 어트리뷰트와 자식을 해당 컴포넌트에 단일 객체로 전달하는데 이때 객체를 `props`라고 한다
+    - 다음은 페이지에 "Hello, SW"을 렌더링 하는 예시다
+        ```
+            function Welcome(props) {
+                return <div>Hello, {props.name}</div>;
+            }
+
+            const element = <Welcome name="SW" />;
+            ReactDOM.render(
+                element,
+                document.getElementById('root');
+            )
+        ```
+
+- 컴포넌트 합성
+
+    - 컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있다. 이는 모든 세부 단계에서 동일한 추상 컴포넌트를 사용할 수 있음을 의미하며 React앱에서는 버튼, 폼, 다이얼로그, 화면 등의 모든 것들이 흔히 컴포넌트로 표현된다
+    - 예를 들어 `Welcome`을 여러번 렌더링 하는 `App` 컴포넌트를 만들 수 있다
+        ```
+            function Welcome(props) {
+                return <div>Hello, {props.name}</div>;
+            }
+
+            function App() {
+                return (
+                    <div>
+                        <Welcome name="SW"/>
+                        <Welcome name="YH"/>
+                        <Welcome name="JB"/>
+                    </div>
+                );
+            }
+            ReactDOM.render(
+                <App />,
+                document.getElementById('root');
+            )
+        ```
+
+- Props
+
+    - 함수 컴포넌트나 클랫 ㅡ컴포넌트 모두 컴포넌트의 자체 `props`를 수정해서는 안 된다
+        ```
+            function sum(a,b) {
+                return a+b;
+            }
+        ``` 
+    - 이런 함수들은 `순수 함수`라고 호칭하는데 이는 입력값을 바꾸지 않고 항상 동일한 입력값에 대한 동일한 결과를 반환하기 때문이다
+    - 반면 다음 함수는 자신의 입력값을 변경하기 때문에 순수 함수가 아니다
+        ```
+            function withdraw(account, amount) {
+                account.total -= amount;
+            }
+        ```
+    - React는 매우 유연하지만 한 가지 엄격한 규칙이 있다
+        <h3>모든 React 컴포넌트는 자신의 props를 다룰 때 반드시 순수 함수처럼 동작해야 합니다</h3>
+    - React 컴포넌트는 `state`를 통해 위 규칙을 위반하지 않고 사용자 액션, 네트워크 응답 및 다른 요소에 대한 응답으로 시간에 따라 자신의 출력값을 변경할 수 있다

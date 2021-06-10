@@ -300,3 +300,76 @@
     - React는 매우 유연하지만 한 가지 엄격한 규칙이 있다
         <h3>모든 React 컴포넌트는 자신의 props를 다룰 때 반드시 순수 함수처럼 동작해야 합니다</h3>
     - React 컴포넌트는 `state`를 통해 위 규칙을 위반하지 않고 사용자 액션, 네트워크 응답 및 다른 요소에 대한 응답으로 시간에 따라 자신의 출력값을 변경할 수 있다
+
+### 10日
+
+- EL(Expression Language)
+
+    - 값을 표현하는 데 사용되는 스크립트 언어로서 JSP의 기본 문법을 보완하는 역할을 한다
+    - 제공 기능
+        - JSP의 스코프에 맞는 속성 사용
+        - 집합 객체에 대한 접근 방법 제공
+        - 수치 연산, 관계 연산, 논리 연산자 제공
+        - 자바 클래스 메소드 호출 기능 제공
+        - 표현 언어만의 기본 객체 제공
+    - 문법
+        ```
+        ${expression}
+        ex) ${sessionScope.member.id}
+        ```
+
+- EL에서 보관소 검색 범위 지정
+
+    `${var}`처럼 보관소를 지정하지 않으면 다음과 같은 순서로 모든 보관소를 검색한다
+    ```
+    JspContext -> ServletRequest -> HttpSession -> ServletContext
+    ```
+    특정 보관소에서만 찾도록 지정하려면 `${ScopeName.var}` 와 같이 지정하면 된다   
+    ex) `${requestScope.var}`
+
+    |Scope Name|보관소|
+    |---|---|
+    |PageScope|JspContext|
+    |requestScope|ServletRequest|
+    |seesionScope|HttpSession|
+    |applicationScope|ServletContext|
+
+
+- EL 기본 객체
+
+    <img src="../../img/el_object.jpg" width="80%">
+
+- EL 데이터 타입
+
+    - Boolean : Ture, False
+    - 정수 : `0~9`로 이루어진 정수값, 음수의 경우 `-`가 붙음
+    - 실수 : `0~9`로 이루어져 있으며 소수점을 사용할 수 있다
+    - 문자열 : 따옴표로 둘러싼 문자열로 따옴표를 표현할 경우 `\'` 와 같이 `\`기호와 같이 사용한다
+    - `\` 기호 자체는 `\\`로 표시
+    - Null
+
+- EL 객체 접근
+
+    ```
+    ${<expr1>, <expr2>}
+    ```
+
+    - 규칙
+        - `expr1`이나 `expr2`가 null이면 null을 반환한다
+        - `expr1`이 `Map`인 경우 `expr2`를 Key로 한 값을 반환한다
+        - `expr1`이 `List`나 `Array`면 `expr2`이 정수일 경우 해당 정수 `index`에 해당하는 값을 반환하며 정수가 아닐 경우 오류가 발생한다
+        - `expr1`이 객체일 경우 `expr2`에 해당하는 `getter` 메소드에 해당하는 메소드를 호출한 결과를 반환한다
+    
+- 비교 연산자
+    - JSP에서는 html 태그도 사용하므로 `<,>`와 같은 태그 대신 문자를 사용하기도 한다
+        - `==` or `eq`
+        - `!=` or `ne`
+        - `<` or `lt`
+        - `>` or `gt`
+        - `<=` or `le`
+        - `>=` or `ge`
+
+- 표현 언어 비활성화 JSP에 명시하기
+    ```
+    <%@ page isELIgnored = "true" %>
+    ```

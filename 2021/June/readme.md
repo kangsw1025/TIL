@@ -404,3 +404,99 @@
         - 무분별하게 상태를 참조하거나 변경하는 경우 개발자조차 현재 프로그램이 어떻게 돌아가는지 파악 하기 힘들 수 있다
         - 불변성을 유지하며 순수 함수를 사용한다는 것은 함수 외부의 상태에 접근하여 이미 메모리에 할당되어 있는 값을 변경하지 않는다는 의미이므로, 예측하지 못한 상태의 변경을 방어할 수 있다
     - 상태의 변경을 추적하기 쉽다
+
+### 24日
+
+- React LifeCycle
+
+    ![react_lifecycle](../../img/react_lifecycle.jpg)
+
+- Mount
+
+    - 컴포넌트가 처음 실행될 때 발생하는 생명주기
+        - constructor
+        - getDerivedStateFromProps
+        - render
+        - componentDidMount
+    - constructor
+        - `constructor`는 컴포넌트의 생성자 메소드로 컴포넌트가 만들어지면 가장 먼저 실행되는 메소드이다
+        ```
+        constructor(props) {
+            super(props);
+            console.log("constructor);
+        }
+        ```
+    - getDerivedStateFromProps
+        - `getDerivedStateFromProps`는 `props`로 받아온 것을 `state`에 넣어주고 싶을 때 사용한다
+        ```
+        static getDerivedStateFromProps(nextProps, prevState) {
+            console.log("getDerivedStateFromProps");
+            if (nextProps.color !== prevState.color) {
+                return { color: nextProps.color };
+            }
+            return null;
+        }
+        ```
+        - 다른 생명주기 메소드와는 달리 앞에 `static`을 필요로 하며, 이 안에서는 `this`를 조회할 수 없다
+        - 특정 객체를 반환하게 되면 해당 객체 안에 있는 내용들이 컴포넌트의 `state`로 설정이 되며 `null`을 반호나하게 되면 아무 일도 발생하지 않습니다
+        - 컴포넌트가 처음 렌더링 되기 전에도 호출 되고, 이후 리렌더링 되거 전에도 매번 실행된다
+    - render
+        - 컴포넌트를 렌더링하는 메소드
+    - componentDidMount
+        - 컴포넌트의 첫번째 렌더링을 마치고 나면 호출되는 메소드로 이 메소드가 호출되는 시점에는 만든 컴포넌트가 화면에 나타난 상태이다
+        - 주로 D3, masonry 처럼 DOM을 사용해야하는 외부 라이브러리 연동을 하거나, 해당 컴포넌트에서 필요로 하는 데이터를 요청하기 위해 axios, fetch 등을 통하여 ajax 요청을 하거나, DOM의 속성을 읽거나 직접 변경하는 작업을 수행한다
+    
+- Update
+
+    - 컴포넌트가 업데이트 되는 시점에 호출되는 생명주기
+        - getDerivedStateFromProps
+        - shouldComponentUpdate
+        - render
+        - getSnapshotBeforeUpdate
+        - componentDidUpdate
+    - getDerivedStateFromProps
+        - Mount 시에도 호출되지만 컴포넌트의 `props`나 `state`가 바뀌었을 경우에도 이 메소드가 호출된다
+    - shouldComponentUpdate
+        - `shouldComponentUpdate` 메소드는 컴포넌트가 리렌더링 할지 말지를 결정하는 메소드이다
+        ```
+        shouldComponentUpdate(nextProps, nextState) {
+            console.log("shouldComponentUpdate", nextProps, nextState);
+            return nextState.number % 10 !==4;
+            // 반환 값이 참일 경우에만 리렌더링 합니다
+        }
+        ```
+        - 주로 최적화 할 때 사용하는 메소드
+    - getSnapshotBeforeUpdate
+        - `getSnapshotBeforeUpdate`는 컴포넌트에 변화가 일어나기 직전의 DOM 상태를 가져와서 특정 값을 반환하면 그 다음 발생하게 되는 `componentDidUpdate` 함수에서 받아와서 사용을 할 수 있다
+        ```
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+            console.log("getSnapshotBeforeUpdate");
+            if(prevProps.color !== this.props.color) {
+                return this.myRef.style.color;
+            }
+            return null;
+        }
+        ```
+    - componentDidUpdate
+        `componentDidUpdate`는 리렌더링을 마치고, 화면에 우리가 원하는 변화가 모두 반영되고 난 뒤 호출되는 메소드며 3번째 파라미터로 `getSnapshotBeforeUpdate`에서 반환한 값을 조회 할 수 있다
+        ```
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            console.log("componentDidUpdate", prevProps, prevState);
+            if(snapshot) {
+                console.log("업데이트 되기 직전 색상 : ", snapshot);
+            }
+        }
+        ```
+    
+- UnMount
+
+    - 컴포넌트가 화면에서 사라지는 것을 의미하며 관련 생명주기 메소드는 `componentWillUnmount` 하나뿐이다
+    - componentWillUnmount
+        - `componentWillUnmount`는 컴포넌트가 화면에서 사라지기 직전에 호출된다
+        ```
+        componentWillUnmount() {
+            console.log("componentWillUnmount");
+        }
+        ```
+        - 주로 DOM에 직접 등록했었던 이벤트를 제거하고, 만약에 `setTimeout`을 걸은 것이 있다면 `clearTimeout`을 통하여 제거를한다
+        - 추가적으로, 외부 라이브러리를 사용한게 있고 해당 라이브러리에 dispose 기능이 있다면 여기서 호출하면 된다

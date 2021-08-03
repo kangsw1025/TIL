@@ -15,3 +15,4 @@
 - [5월](./2021/May/readme.md)
 - [6월](./2021/June/readme.md)
 - [7월](./2021/July/readme.md)
+- [8월](./2021/August/readme.md)

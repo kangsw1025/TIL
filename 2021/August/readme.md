@@ -86,7 +86,7 @@
      ![Redux](../../img/redux.jpg)  
     위와 같이 스토어를 사용하여 상태를 컴포넌트 구조 바깥에 두고 스토어라는 중간자를 통해 상태를 업데이트하거나 새로운 상태를 전달 받는다 즉 상태값을 컴포넌트에 종속시키지 않고 상태관리를 바깥에서 할 수 있게 해준다
 
-  - 전반적인 흐름
+  - WorkFlow
 
     ![Redux_flow](../../img/redux_flow.jpg)
 
@@ -124,3 +124,39 @@
       스토어는 컴포넌트 외부에 있는 상태 저장소로, 안에는 현재 상태들, 리듀서, 몇 가지의 내장 함수를 포함하고 있다
     - Dispatch  
       디스패치는 스토어의 내장함수 중 하나로, 액션을 발생시키는 역할을 한다
+
+### 8 日
+
+- 리덕스 미들웨어
+
+  - 액션을 디스패치 했을 때 리듀서에서 이를 처기하기 전에 지정된 작업들을 실행할 수 있게 해주는 것으로 액션과 리듀서 사이의 중간자라고 볼 수 있다
+  - 전달받은 액션을 콘솔에 기록하거나, 전달받은 액션 정보를 기반으로 액션을 취소하거나, 다른 종류의 액션을 추가하는 등 다양한 역할을 담당할 수 있으며 구조는 아래와 같다
+
+  ```
+  const loggerMiddleware = store => next => action {
+    //
+  }
+
+  const loggerMiddleware = function loggerMiddleware(store) {
+    return funtion(next) {
+      return function(action) {
+        //
+      }
+    }
+  }
+
+
+  export default loggerMiddleware;
+  ```
+
+  - 필요한 이유
+
+    - 우리가 알고 있는 리덕스는 동기적인 흐름을 통해 동작하는데 동기적인 흐름만으로는 처리하기 힘든 작업들이 있다. 이때 비동기 작업을 처리하는데 있어 리덕스 미들웨어를 주로 사용한다
+
+  - WorkFlow
+
+  ![Redux_Middleware_flow](../../img/redux_middleware.jpg)
+
+  - 대표적인 미들웨어
+    - redux-thunk
+    - redux-saga : 특정 액션이 디스패치 되었을 때 정해진 로직에 따라 다른 액션을 디스패치시키는 규칙을 작성하여 비동기 작업을 처리할 수 있게 해준다

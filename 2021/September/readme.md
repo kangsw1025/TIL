@@ -450,7 +450,142 @@
        <br>
        <br>
   5. 디바이스 드라이버
-     시스템에는 여러 하드웨어가 붙어있고, 이들을 운영체제에서 인식하고 관리학 ㅔ만들어 응용 프로그램이 하드웨어를 사용할 수 있게 만들어야 하는데 이때 하드웨어를 추상화 해주는 계층을 디바이스 드라이버라 부르며 운영체제가 디바이스 드라이버들을 관리한다
+     시스템에는 여러 하드웨어가 붙어있고, 이들을 운영체제에서 인식하고 관리하게 만들어 응용 프로그램이 하드웨어를 사용할 수 있게 만들어야 하는데 이때 하드웨어를 추상화 해주는 계층을 디바이스 드라이버라 부르며 운영체제가 디바이스 드라이버들을 관리한다
      - 순차접근 장치
      - 임의접근 장치
      - 네트워크 장치
+
+### 24 日
+
+- Process Management
+
+  CPU가 프로세스가 여러개일 때, CPU 스케줄링을 통해 관리하는 것을 말한다  
+   이때 CPU는 각 프로세스들이 누군지 알아야 관리가 가능하고 프로세스들의 특징을 갖고 있는 것이 `Process Metadata`이다
+
+  - Process Metadata가 갖고 있는 정보
+    - Process ID : 프로세스 고유 식별 번호
+    - Process State : 프로세스의 현재 상태(준비, 실행, 대기 상태)
+    - Process Priority : 프로세스 우선순위 등과 같은 스켖루링 관련 정보
+    - CPU Registers : 프로세스의 레지스터 상태(범용 레지스터, 데이터 레지스터, 세그먼트 레지스터 등)를 저장하는 공간
+    - Owner : CPU 사용시간의 정보, 각종 스케줄러의 필요한 정보
+    - 기억장치 관리 정보 : 프로그램이 적재될 기억 장치의 상한치, 하한치, 페이지 테이블 등의 정보
+    - 입출력 정보 : 프로세스 수행 시 필요한 주변 장치, 파일들의 정보
+    - 프로그램 카운터 : 다음에 실행되는 명령어의 주소
+
+  이러한 정보들이 담긴 메타데이터는 생성되면 `PCB(Process Control Block)`에 저장된다
+
+- PCB(Process Control Block)
+
+  프로세스 메타데이터들을 저장해 놓는 곳으로 하나의 PCB 안에는 하나의 프로세스의 정보가 담겨있다
+  ![PCB](https://user-images.githubusercontent.com/62426665/134689926-d84dc87b-677c-4d3d-9c4a-f22e078a807e.png)  
+  프로그램 실행 -> 프로세스 생성 -> 프로세스 주소 공간에 (코드, 데이터, 스택) 생성 -> PCB에 저장
+
+  - PCB 상세 구조
+
+    ![PCB_Architecture](https://user-images.githubusercontent.com/62426665/134690119-83c12aef-d1d6-46b1-be83-f34fd2f81f5f.png)
+
+    - Process State : 프로세스 상태(Create, Ready, Running, Block, Terminated)
+    - Proccess Counter : 다음 실행할 명령어의 주솟값
+    - CPU Registers : Accumulator, Index Register, Stack Pointers, General Purpose Registers
+
+  - PCB 관리 방식
+
+    Linked List 방식으로 관리된다  
+    PCB List Head에 PCB들이 생성될 때마다 붙게된다. 주솟값으로 연결이 이루어져 있는 연결 리스트 형태로 <b>삽입 삭제</b>가 용이하다  
+    즉 프로세스가 생성되면 해당 PCB가 생성되고 프로세스 완료 시 제거된다.  
+    수행중인 프로세스를 변경할때 CPU의 레지스터 정보가 변경되는 것을 `Context Switching`이라고 한다
+
+- Context Switching
+
+  CPU가 현재 실행하고 있는 Task(Process, Thread)의 상태를 저장하고, 다음 진행할 Task의 상태 및 Register 값들에 대한 정보(Context)를 읽어 새로운 Task의 Context 정보로 교체하는 과정을 말한다
+
+  - Context Switching 수행 과정
+
+    1. Task의 대부분 정보는 Register에 저장되고 PCB로 관리 되고 있따
+    2. 현재 실행하고 있는 Task의 PCB 정보를 저장하게 된다(Process Stack, Ready Queue)
+    3. 다음 실행할 Task의 PCB 정보를 읽어 Register에 적재하고 CPU가 이전에 진행했던 과정을 연속적으로 수행할 수 있게 된다
+
+  - Context Switching Cost
+    1. Cache 초기화
+    2. Memory Mapping 초기화
+    3. 메모리의 접근을 위해 Kernel은 항상 실행되어야 한다
+
+- HTTP(HyperText Transfer Protocol)
+
+  인터넷 상에서 클라이언트와 서버가 자원을 주고 받을 때 사용하는 통신 규약  
+  HTTP는 텍스트 교환이므로 누군가 네트워크에서 신호를 가로채면 내용이 노출되는 보안 이슈가 존재하는데 이런 문제를 해결해주는 프로토콜이 `HTTPS`다
+
+- HTTPS(HyperText Transfer Protocol Secure)
+
+  인터넷 상에서 정보를 암호화하는 SSL 프로노콜을 사용해 클라이언트와 서버가 자원을 주고 받을 때 쓰는 통신 규약
+
+- 대칭키(Symmetric Key)
+
+  암호화와 복호화에 같은 암호키를 사용하는 알고리즘  
+  동일한 키를 주고받기 때문에 매우 빠르다는 장점이 있지만 대칭키 전달과정에서 해킹 위험에 노출된다
+
+- 공개키(Public Key)
+
+  암호화와 복호화에 사용하는 암호키를 분리한 알고리즘  
+  자신이 가지고 있는 고유한 암호키로만 복호화할 수 있는 암호키를 대중에 공개
+
+- OSI 7 계층
+
+  <image src="https://user-images.githubusercontent.com/62426665/134693492-2fda63a8-c9ee-43c2-913e-2e26197ddd25.png" width=60%/>
+  <br>
+  <br>
+
+  1. 물리 계층(Physical)
+
+     리피터, 케이블, 허브 등  
+      데이터 전기적인 신호로 변환해서 주고받는 기능을 진행하는 공간으로 데이터를 전송하는 역할만 진행한다
+     <br>
+     <br>
+
+  2. 데이터 링크 계층(Data Link)
+
+     브릿지, 스위치 등  
+      물리 계층으로 송수신되는 정보를 관리하여 안전하게 전달되도록 도와주는 역할  
+      프레임에 Mac 주소를 부여하고 에러 검출, 재전송, 흐름 제어를 진행한다
+     <br>
+     <br>
+
+  3. 네트워크 계층(Network)
+
+     라우터, IP  
+      데이터를 목적지까지 가장 안전하고 빠르게 전달하는 기능 담당  
+      라우터를 통해 이동할 경로를 선택하여 IP 주소를 지정하고, 해당 경로에 따라 패킷을 전달해준다
+     <br>
+     <br>
+
+  4. 전송 계층(Transport)
+
+     TCP,UDP  
+      TCP와 UDP 프로토콜을 통해 통신을 활성화한다. 포트를 열어두고, 프로그램들이 전송할 수 있또록 제공해준다
+
+     - TCP : 신뢰성, 연결지향적
+     - UDP : 비신뢰성, 비연결성, 실시간
+       <br>
+       <br>
+
+  5. 세션 계층(Session)
+
+     API, Socket  
+      데이터가 통신하기 위한 논리적 연결을 담당  
+      TCP/IP 세션을 만들고 없애는 책일음 지니고 있다
+     <br>
+     <br>
+
+  6. 표현 계층(Presentation)
+
+     JPEG, MPEG 등  
+      데이터 표현에 대한 독립성을 제공하고 암호화하는 역할을 담당  
+      파일 인코딩, 명령어를 포장, 압축, 암호화한다
+     <br>
+     <br>
+
+  7. 응용 계층(Application)
+
+     HTTP, FTP, DNS 등  
+     최종 목적지로 응용 프로세스와 직접 관계하여 일반적인 응용 서비스를 수행한다  
+     사용자 인터페이스, 전자우편, 데이터베이스 고나리 등의 서비스를 제공한다

@@ -17,3 +17,4 @@
 - [7월](./2021/July/readme.md)
 - [8월](./2021/August/readme.md)
 - [9월](./2021/September/readme.md)
+- [10월](./2021/October/readme.md)

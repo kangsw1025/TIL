@@ -267,3 +267,112 @@
 
   웹팩은 기본적으로 모듈 번들러다  
   의존성 그래프에서 엔트리로 그래프의 시작점을 설정하면 웹팩은 모든 자원을 몯류로 로딩한 후 아웃풋으로 묶어준다. 로더로 각 모듈별로 바벨, 사스변환 등을 처리하고 이 결과를 플러그인이 받아 난독화, 텍스트 추출 등의 추가 작업을 한다
+
+### 17 日
+
+- BEM
+
+  BEM(Block-Element-Modifier)은 CSS 클래스 명명 규칙으로 html 요소들을 각각 `Block`, `Element`, `Modifier` 세 가지로 분류해 작명하고 `__`와 `--`로 구분한다
+
+  - BEM 명명 규칙의 장점
+    - 목적 또는 기능을 쉽게 알 수 있다
+    - 구성 요소의 구조를 쉽게 알 수 있다
+    - 선택자 특이성을 핫아 낮은 수준으로 유지한다
+
+  ```css
+  .header__navigation--navi-text {
+    color: red;
+  }
+  ```
+
+  위 코드에서 `header`는 <b>Block</b>, `navigation`은 <b>Element</b>, `navi-text`는 <b>Modifier</b>가 된다  
+  BEM은 기본적으로 ID를 사용하지 않으며, class만을 사용한다  
+  또 '어떻게 보이는가'가 아닌 '어떤 목적인가'에 따라 이름을 짓는다. 예를 들어 에러 메시지를 띄우는 p태그에게는 `.red`가 아닌 `.error`라는 이름을 지어줘야 한다  
+  이름을 연결할 때는 `bloack-name`과 같이 하이픈 하나만 써서 연결한다
+
+  - Block  
+    ![block](https://user-images.githubusercontent.com/62426665/137630090-089f342e-c03f-4ac6-bebe-870c2e4168d6.png)
+    재사용 가능한 기능적으로 독립적인 페이지 컴포넌트를 블럭이라고 부른다  
+     블럭은 블럭을 감쌀 수 있다. `.header>.logo`는 header 블럭 안에 logo라는 블럭이 들어간 형태이다
+
+  - Element  
+    ![element](https://user-images.githubusercontent.com/62426665/137630148-64b54166-961c-4f65-83af-fe5010d930f1.png)  
+     엘리먼트는 `블럭을 구성하는 단위`이다  
+     블럭은 독립적인 형태인 반면, 엘리먼트는 의존적인 형태다. 자신이 속한 블럭 내에서만 의미를 가지기 때문에 블럭 안에서 떼어다 다른곳에 사용할 수 없다
+
+    ```html
+    <form class="search-form">
+      <input class="search-form__input" />
+      <button class="sarch-form__button">Search</button>
+    </form>
+    ```
+
+    위 예시에서 `.search-form`은 블럭이고, `.search-form__input`과 `.search-form__button`은 엘리먼트다. search-form이란 블럭은 떼어내서 다른 곳에서 사용해도 되지만 내부의 input과 button은 검색을 위한 인풋과 버튼이기에 `search-form 안에서만 존재 의미가 있는 엘리먼트`이다  
+    엘리먼트 또한 중첩이 가능하다
+
+  - Modifier
+
+    모디파이어는 블럭이나 엘리먼트의 속성을 담당한다. 모양이 다르거나, 다르게 동작하는 블럭이나 엘리먼트를 만들 때 사용한다
+    ![modifier](https://user-images.githubusercontent.com/62426665/137630584-46c69c7b-ad88-43b4-8149-538ab52c4150.png)
+
+    ```html
+    <ul class="tab">
+      <li class="tab__item">탭 01</li>
+      <li class="tab__item">탭 02</li>
+      <li class="tab__item tab__item--focused">탭 03</li>
+    </ul>
+    ```
+
+    위 코드에서 `--focused`가 수식어에 해당한다.
+
+<br>
+
+- 실행 컨텍스트(Execution Context)
+
+  EC는 scope, hoisting, this, function, closure 등의 동작 원리를 담고 있는 자바스크립트의 핵심원리이다.  
+  [ECMAScript 스펙](https://developer.mozilla.org/ko/docs/Web/JavaScript/Language_Resources)에 따르면 EC를 <b>실행 가능한 코드를 형상화하고 구분하는 추상적인 개념</b>이라고 정의한다. 즉 EC는 실행 가능한 코드가 실행되기 위한 필요한 환경이라고 말할 수 있다.
+
+- Execution Context의 종류
+
+  - Global Context  
+    함수 안에서 실행되는 코드가 아니라면 모든 스크립트는 `Global Context`에서 실행된다. 스택 구조를 가지는 형태로 `Execution Context`가 생성이 된 후 global object로 윈도우가 this로 할당되고 스택에 쌓이게 되며 LIFO(Last In First Out)으로 함수를 실행하게 된다.
+
+  - Functional Context  
+    선언된 함수가 호출이 될 때를 기점으로 생성이 되고 함수의 모든 동작이 종료되면 소멸된다(closure를 사용하면 스코프가 소멸하지 않고 이용할 수 있다)  
+    각각의 함수는 `Functional Context`를 가지지만 함수가 호출이 되어야 생성이 된다
+
+- Execution Context의 3가지 객체  
+  ![excute_context_structure](https://user-images.githubusercontent.com/62426665/137631598-aad14c85-e03c-456f-ab86-a9b41bbaf598.png)
+
+  - Variable Object(변수 객체)  
+    EC가 생성이 되면 자바스크립트 엔진은 실행에 필요한 정보들을 담을 객체를 생성하는데 이를 Variable Object(VO)라고 하며 이는 다음과 같은 정보를 담고 있다
+
+    - 변수
+    - 매개변수(parameter)와 인수정보(arguments)
+    - 함수 선언(함수 표현식은 제외)  
+      VO는 EC의 프로퍼티이기 때문에 값을 갖는데 이 값은 다른 객체를 가리키는데 전역 코드 실행시 생성되는 전역 컨텍스트의 경우와 함수 실행시 생성되는 함수 컨텍스트의 경우 가리키는 객체가 다르다. 이는 전역 코드와 함수의 내용이 다르기 때문인데 예를 들면 전역 코드에는 매개변수가 없지만 함수에는 있다.
+
+      전역 컨텍스트의 경우  
+       Variable Object는 유일하며 최상위에 위치하고 모든 전역 변수, 전역 함수 등을 포함하는 전역 객체(Global Object / GO)를 가리킨다. 전역 객체는 전역에 선언된 전역 변수와 전역 함수를 프로퍼티로 소유한다
+      ![ec-vo-global](https://user-images.githubusercontent.com/62426665/137631732-bd2b3695-5cff-4ff7-8c03-a55701f9cbf5.png)
+
+      함수 컨텍스트의 경우  
+       Variable Object는 Activation Object(AO / 활성 객체)를 가리키며 매개변수와 인수들의 정보를 배열의 형태로 담고 있는 객체인 arguments object가 추가된다
+      ![ec-vo-foo](https://user-images.githubusercontent.com/62426665/137631741-09d6df96-e547-49e4-8e56-54f752b62bcc.png)
+
+  - Scope Chain(SC)
+
+    스코프 체인은 일종의 리스트로서 전역 객체와 중첩된 함수의 스코프의 레퍼런스를 차례로 저장하고 있다. 다시 말해 스코프 체인은 해당 전역 또는 참조할 수 있는 변수, 함수 선언 등의 정보를 담고 있는 전역 객체 또는 활성 객체의 리스트를 가리킨다  
+    현재 실행 컨텍스트의 활성 객체를 선두로 하여 순차적으로 상위 컨텍스트의 활성 객체를 가리키며 마지막 리스트는 전역 객체를 가리킨다
+    ![ec-sc](https://user-images.githubusercontent.com/62426665/137631890-2a27d344-3812-4f21-8437-4bbdb0c408ba.png)
+
+    - 스코프 체인은 식별자 중에서 객체(전역 객체 제외)의 프로퍼티가 아닌 식별자, 즉 변수를 검색하는 메커니즘이다.
+      식별자 중에서 변수가 아닌 객체의 프로퍼티(물론 메소드도 포함된다)를 검색하는 메커니즘은 프로토타입 체인(Prototype Chain)이다.  
+      <br>
+
+    엔진은 스코프 체인을 통해 렉시컬 스코프를 파악한다. 함수가 중첩 상태일 때 하위함수 내에서 상위함수의 스코프와 전역 스코프까지 참조할 수 있는데 이것는 스코프 체인을 검색을 통해 가능하다. 함수가 중첩되어 있으면 중첩될 때마다 부모 함수의 Scope가 자식 함수의 스코프 체인에 포함된다. 함수 실행중에 변수를 만나면 그 변수를 우선 현재 Scope, 즉 Activation Object에서 검색해보고, 만약 검색에 실패하면 스코프 체인에 담겨진 순서대로 그 검색을 이어가게 되는 것이다. 이것이 스코프 체인이라고 불리는 이유이다.
+
+    예를 들어 함수 내의 코드에서 변수를 참조하면 엔진은 스코프 체인의 첫번째 리스트가 가리키는 AO에 접근하여 변수를 검색한다. 만일 검색에 실패하면 다음 리스트가 가리키는 Activation Object(또는 전역 객체)를 검색한다. 이와 같이 순차적으로 스코프 체인에서 변수를 검색하는데 결국 검색에 실패하면 정의되지 않은 변수에 접근하는 것으로 판단하여 Reference 에러를 발생시킨다. 스코프 체인은 함수의 감추인 프로퍼티인 [[Scope]]로 참조할 수 있다.
+
+  - this value  
+    this 프로퍼티에는 this 값이 할당된다. this에 할당되는 값은 함수 호출 패턴에 의해 결정된다
